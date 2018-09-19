@@ -13,3 +13,7 @@ gradle-app.setting
 # Cache of project
 .gradletasknamecache
 /.nb-gradle/
+/logs
+derby.log
+commands.txt
+geosparql_conformance.rdf
