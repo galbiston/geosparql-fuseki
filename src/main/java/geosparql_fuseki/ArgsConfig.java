@@ -21,8 +21,8 @@ import com.beust.jcommander.Parameter;
 import com.beust.jcommander.converters.FileConverter;
 import java.io.File;
 import org.apache.jena.riot.RDFFormat;
+import rdf_tables.cli.DelimiterValidator;
 import rdf_tables.cli.FormatParameter;
-import rdf_tables.cli.SeparatorValidator;
 
 /**
  *
@@ -70,9 +70,9 @@ public class ArgsConfig {
     @Parameter(names = {"--tabular_file", "-tf"}, description = "Tabular file to load into dataset default graph. (See RDF Tables for table formatting.)", converter = FileConverter.class)
     private File tabularFile = null;
 
-    //11) Separator value - COMMA, TAB, SPACE
-    @Parameter(names = {"--tabular_sep", "-ts"}, description = "Column separator in the input file. Any character except ':', '^' and '|'. Keywords TAB, SPACE and COMMA are also supported. Default: ',' ", validateWith = SeparatorValidator.class)
-    private String tabularSeparator = "COMMA";
+    //11) Delimiter value - COMMA, TAB, SPACE
+    @Parameter(names = {"--tabular_delim", "-td"}, description = "Column delimiter in the input file. Any character except ':', '^' and '|'. Keywords TAB, SPACE and COMMA are also supported. Default: ',' ", validateWith = DelimiterValidator.class)
+    private String tabularDelimiter = "COMMA";
 
     //12) Query Rewrite enabled
     @Parameter(names = {"--rewrite", "-r"}, description = "Enable query rewrite. Default: true", arity = 1)
@@ -186,12 +186,12 @@ public class ArgsConfig {
         this.tabularFile = tabularFile;
     }
 
-    public String getTabularSeparator() {
-        return tabularSeparator;
+    public String getTabularDelimiter() {
+        return tabularDelimiter;
     }
 
-    public void setTabularSeparator(String tabularSeparator) {
-        this.tabularSeparator = tabularSeparator;
+    public void setTabularDelimiter(String tabularDelimiter) {
+        this.tabularDelimiter = tabularDelimiter;
     }
 
     public boolean isApplyDefaultGeometry() {
@@ -204,7 +204,7 @@ public class ArgsConfig {
 
     @Override
     public String toString() {
-        return "ArgsConfig{" + "port=" + port + ", datsetName=" + datsetName + ", tdbFile=" + tdbFile + ", loopback=" + loopback + ", inference=" + inference + ", queryRewrite=" + queryRewrite + ", updateAllowed=" + updateAllowed + ", indexEnabled=" + indexEnabled + ", geometryIndexSize=" + geometryIndexSize + ", transformIndexSize=" + transformIndexSize + ", rewriteIndexSize=" + rewriteIndexSize + ", geometryIndexExpiry=" + geometryIndexExpiry + ", transformIndexExpiry=" + transformIndexExpiry + ", rewriteIndexExpiry=" + rewriteIndexExpiry + ", rdfFile=" + rdfFile + ", rdfFormat=" + rdfFormat + ", tabularFile=" + tabularFile + ", tabularSeparator=" + tabularSeparator + ", applyDefaultGeometry=" + applyDefaultGeometry + '}';
+        return "ArgsConfig{" + "port=" + port + ", datsetName=" + datsetName + ", loopback=" + loopback + ", updateAllowed=" + updateAllowed + ", tdbFile=" + tdbFile + ", inference=" + inference + ", applyDefaultGeometry=" + applyDefaultGeometry + ", rdfFile=" + rdfFile + ", rdfFormat=" + rdfFormat + ", tabularFile=" + tabularFile + ", tabularDelimiter=" + tabularDelimiter + ", queryRewrite=" + queryRewrite + ", indexEnabled=" + indexEnabled + ", geometryIndexSize=" + geometryIndexSize + ", transformIndexSize=" + transformIndexSize + ", rewriteIndexSize=" + rewriteIndexSize + ", geometryIndexExpiry=" + geometryIndexExpiry + ", transformIndexExpiry=" + transformIndexExpiry + ", rewriteIndexExpiry=" + rewriteIndexExpiry + '}';
     }
 
 }
