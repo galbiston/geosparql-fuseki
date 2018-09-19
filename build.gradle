@@ -3,13 +3,6 @@ apply plugin: 'application'
 sourceCompatibility = '1.8'
 [compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
 
-// NetBeans will automatically add "run" and "debug" tasks relying on the
-// "mainClass" property. You may however define the property prior executing
-// tasks by passing a "-PmainClass=<QUALIFIED_CLASS_NAME>" argument.
-//
-// Note however, that you may define your own "run" and "debug" task if you
-// prefer. In this case NetBeans will not add these tasks but you may rely on
-// your own implementation.
 if (!hasProperty('mainClass')) {
     ext.mainClass = "geosparql_fuseki.Main"
 }
@@ -18,9 +11,6 @@ mainClassName = "geosparql_fuseki.Main"
 repositories {
     mavenLocal()
     mavenCentral()
-    // You may define additional repositories, or even remove "mavenCentral()".
-    // Read more about repositories here:
-    //   http://www.gradle.org/docs/current/userguide/dependency_management.html#sec:repositories
 }
 
 dependencies {
@@ -54,16 +44,16 @@ dependencies {
 
     //GeoSPARQL Extension
     ext.geosparqlVersion = "1.0.0"
-    implementation "io.github.galbiston:GeoSPARQLJena:$geosparqlVersion"
+    implementation "io.github.galbiston:geosparql-jena:$geosparqlVersion"
 }
-
-group = 'io.github.galbiston'
-version = '1.0.0'
 
 apply plugin: 'maven-publish'
 publishing {
     publications {
         mavenJava(MavenPublication) {
+            group = 'io.github.galbiston'
+            version = '1.0.0'
+            artifactId = 'geosparql-fuseki'
             from components.java
         }
     }
