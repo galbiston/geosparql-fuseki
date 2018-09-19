@@ -19,6 +19,7 @@ package geosparql_fuseki;
 
 import geosparql_jena.implementation.data_conversion.GeoSPARQLPredicates;
 import java.io.File;
+import java.io.InputStream;
 import java.lang.invoke.MethodHandles;
 import java.util.Iterator;
 import org.apache.jena.query.Dataset;
@@ -27,11 +28,13 @@ import org.apache.jena.query.ReadWrite;
 import org.apache.jena.rdf.model.InfModel;
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.ModelFactory;
+import org.apache.jena.riot.Lang;
 import org.apache.jena.riot.RDFDataMgr;
+import org.apache.jena.riot.RDFFormat;
 import org.apache.jena.tdb.TDBFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import rdf_tables.cli.SeparatorValidator;
+import rdf_tables.cli.DelimiterValidator;
 import rdf_tables.file.FileReader;
 
 /**
@@ -40,7 +43,7 @@ import rdf_tables.file.FileReader;
  */
 public class DatasetOperations {
 
-    private static final File GEOSPARQL_SCHEMA_FILE = new File(DatasetOperations.class.getClassLoader().getResource("geosparql_vocab_all_v1_0_1_updated.rdf").getFile());
+    private static final InputStream GEOSPARQL_SCHEMA_FILE = DatasetOperations.class.getClassLoader().getResourceAsStream("geosparql_vocab_all_v1_0_1_updated.rdf");
 
     private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
@@ -49,8 +52,10 @@ public class DatasetOperations {
         Dataset dataset;
         File tdbFolder = argsConfig.getTdbFile();
         if (tdbFolder != null) {
+            LOGGER.info("TDB Dataset: {}", tdbFolder);
             dataset = TDBFactory.createDataset(tdbFolder.getAbsolutePath());
         } else {
+            LOGGER.info("In-Memory Dataset");
             dataset = DatasetFactory.create();
         }
 
@@ -62,15 +67,20 @@ public class DatasetOperations {
         if (argsConfig.getRdfFile() != null) {
 
             try {
+
+                File rdfFile = argsConfig.getRdfFile();
+                RDFFormat rdfFormat = argsConfig.getRdfFormat();
+                LOGGER.info("Reading RDF - Started - File: {}, RDF Format: {}", rdfFile, rdfFormat);
                 //Default Model
                 dataset.begin(ReadWrite.WRITE);
                 Model defaultModel = dataset.getDefaultModel();
-                Model model = RDFDataMgr.loadModel(argsConfig.getRdfFile().getAbsolutePath(), argsConfig.getRdfFormat().getLang());
+                Model model = RDFDataMgr.loadModel(rdfFile.getAbsolutePath(), rdfFormat.getLang());
                 defaultModel.add(model);
                 dataset.commit();
-
+                LOGGER.info("Reading RDF - Completed - File: {}, RDF Format: {}", rdfFile, rdfFormat);
             } catch (Exception ex) {
                 LOGGER.error("Write Error: {}", ex.getMessage());
+                dataset.abort();
             } finally {
                 dataset.end();
             }
@@ -79,13 +89,16 @@ public class DatasetOperations {
 
         if (argsConfig.getTabularFile() != null) {
             try {
+                File tabFile = argsConfig.getTabularFile();
+                String delimiter = argsConfig.getTabularDelimiter();
+                LOGGER.info("Reading Tabular - Started - File: {}, Delimiter: {}", tabFile, delimiter);
                 //Default Model
                 dataset.begin(ReadWrite.WRITE);
                 Model defaultModel = dataset.getDefaultModel();
-                Model model = FileReader.convertCSVFile(argsConfig.getTabularFile(), SeparatorValidator.getSeparatorCharacter(argsConfig.getTabularSeparator()));
+                Model model = FileReader.convertCSVFile(tabFile, DelimiterValidator.getDelimiterCharacter(delimiter));
                 defaultModel.add(model);
                 dataset.commit();
-
+                LOGGER.info("Reading Tabular - Completed - File: {}, Delimiter: {}", tabFile, delimiter);
             } catch (Exception ex) {
                 LOGGER.error("Write Error: {}", ex.getMessage());
             } finally {
@@ -99,9 +112,7 @@ public class DatasetOperations {
         if (argsConfig.isApplyDefaultGeometry()) {
 
             try {
-                //Default Model
-                dataset.begin(ReadWrite.WRITE);
-
+                LOGGER.info("Applying hasDefaultGeometry - Started");
                 //Default Model
                 dataset.begin(ReadWrite.WRITE);
                 Model defaultModel = dataset.getDefaultModel();
@@ -116,7 +127,7 @@ public class DatasetOperations {
                 }
 
                 dataset.commit();
-
+                LOGGER.info("Applying hasDefaultGeometry - Completed");
             } catch (Exception ex) {
                 LOGGER.error("Write Error: {}", ex.getMessage());
             } finally {
@@ -128,24 +139,26 @@ public class DatasetOperations {
     public static void applyInferencing(ArgsConfig argsConfig, Dataset dataset) {
 
         if (argsConfig.isInference()) {
-            Model geosparqlSchema = RDFDataMgr.loadModel(GEOSPARQL_SCHEMA_FILE.getAbsolutePath());
+            LOGGER.info("Applying GeoSPARQL Schema - Started");
+            Model geosparqlSchema = ModelFactory.createDefaultModel();
+            RDFDataMgr.read(geosparqlSchema, GEOSPARQL_SCHEMA_FILE, Lang.RDFXML);
 
             try {
                 //Default Model
                 dataset.begin(ReadWrite.WRITE);
                 Model defaultModel = dataset.getDefaultModel();
-                applySchema(geosparqlSchema, defaultModel);
+                applySchema(geosparqlSchema, defaultModel, "default");
 
                 //Named Models
                 Iterator<String> graphNames = dataset.listNames();
                 while (graphNames.hasNext()) {
                     String graphName = graphNames.next();
                     Model namedModel = dataset.getNamedModel(graphName);
-                    applySchema(geosparqlSchema, namedModel);
+                    applySchema(geosparqlSchema, namedModel, graphName);
                 }
 
                 dataset.commit();
-
+                LOGGER.info("Applying GeoSPARQL Schema - Completed");
             } catch (Exception ex) {
                 LOGGER.error("Inferencing Error: {}", ex.getMessage());
             } finally {
@@ -154,10 +167,11 @@ public class DatasetOperations {
         }
     }
 
-    public static void applySchema(Model model, Model geosparqlSchema) {
+    public static void applySchema(Model model, Model geosparqlSchema, String graphName) {
         if (!model.isEmpty()) {
             InfModel infModel = ModelFactory.createRDFSModel(geosparqlSchema, model);
             model.add(infModel.getDeductionsModel());
+            LOGGER.info("Applied to graph: {}", graphName);
         }
     }
 
