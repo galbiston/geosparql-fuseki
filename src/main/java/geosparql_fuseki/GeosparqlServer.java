@@ -43,7 +43,7 @@ public class GeosparqlServer extends Thread {
 
         this.port = port;
         this.loopback = loopback;
-        this.datasetName = datasetName;
+        this.datasetName = "/" + datasetName;
         this.allowUpdate = allowUpdate;
         Builder builder = FusekiServer.create()
                 .setPort(port)
