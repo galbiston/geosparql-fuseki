@@ -5,7 +5,6 @@
  */
 package geosparql_fuseki;
 
-import geosparql_fuseki.cli.ArgsConfig;
 import geosparql_jena.implementation.data_conversion.GeoSPARQLPredicates;
 import java.io.File;
 import java.lang.invoke.MethodHandles;
