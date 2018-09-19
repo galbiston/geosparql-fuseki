@@ -63,7 +63,7 @@ public class ArgsConfig {
     private File rdfFile = null;
 
     //9) RDF file format
-    @Parameter(names = {"--rdf_extension", "-re"}, description = "RDF file format. Default: default", validateWith = FormatParameter.class, converter = FormatParameter.class)
+    @Parameter(names = {"--rdf_extension", "-re"}, description = "RDF file format: json-ld, json-rdf, nt, nq, thrift, trig, trix, ttl, ttl-pretty, xml, xml-plain, xml-pretty. Default: ttl", validateWith = FormatParameter.class, converter = FormatParameter.class)
     private RDFFormat rdfFormat = RDFFormat.TTL;
 
     //10) Load tabular file into dataset
