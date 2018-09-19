@@ -33,28 +33,31 @@ public class GeosparqlServer extends Thread {
     private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
     private final int port;
-
+    private final boolean loopback;
+    private final String datasetName;
+    private final boolean allowUpdate;
     private final FusekiServer server;
     private Thread shutdownThread = null;
-    private String datasetName;
-    private Dataset dataset;
-    private boolean allowUpdate;
 
     public GeosparqlServer(int port, boolean loopback, String datasetName, Dataset dataset, boolean allowUpdate) {
 
         this.port = port;
+        this.loopback = loopback;
+        this.datasetName = datasetName;
+        this.allowUpdate = allowUpdate;
         Builder builder = FusekiServer.create()
                 .setPort(port)
                 .setLoopback(loopback);
         builder.add(datasetName, dataset, allowUpdate);
-
         this.server = builder.build();
+
     }
 
     @Override
     public void run() {
-        this.server.start();
+        LOGGER.info("Server Running - Port: {}, Loopback: {}, Dataset: {}", port, loopback, datasetName, allowUpdate);
         addShutdownHook();
+        this.server.start();
     }
 
     private void addShutdownHook() {
@@ -87,33 +90,21 @@ public class GeosparqlServer extends Thread {
         return port;
     }
 
+    public boolean isLoopback() {
+        return loopback;
+    }
+
     public String getDatasetName() {
         return datasetName;
-    }
-
-    public void setDatasetName(String datasetName) {
-        this.datasetName = datasetName;
-    }
-
-    public Dataset getDataset() {
-        return dataset;
-    }
-
-    public void setDataset(Dataset dataset) {
-        this.dataset = dataset;
     }
 
     public boolean isAllowUpdate() {
         return allowUpdate;
     }
 
-    public void setAllowUpdate(boolean allowUpdate) {
-        this.allowUpdate = allowUpdate;
-    }
-
     @Override
     public String toString() {
-        return "GeosparqlServer{" + "port=" + port + ", datasetName=" + datasetName + ", allowUpdate=" + allowUpdate + '}';
+        return "GeosparqlServer{" + "port=" + port + ", datasetName=" + datasetName + ", allowUpdate=" + allowUpdate + ", loopback=" + loopback + '}';
     }
 
 }
