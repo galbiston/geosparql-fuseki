@@ -64,27 +64,27 @@ public class ArgsConfig {
 
     //8) Geometry Literal Index size
     @Parameter(names = {"--geometry_size", "-gs"}, description = "Geometry Literal index item size. Unlimited: -1, Off: 0, Default: -1")
-    private int geometryIndexSize = -1;
+    private Integer geometryIndexSize = -1;
 
     //9) Geometry Transform Index size
     @Parameter(names = {"--transform_size", "-ts"}, description = "Geoemtry Transform index item size. Unlimited: -1, Off: 0, Default: -1")
-    private int transformIndexSize = -1;
+    private Integer transformIndexSize = -1;
 
     //10) Query Rewrite Index size
     @Parameter(names = {"--rewrite_size", "-rs"}, description = "Query Rewrite index item size. Unlimited: -1, Off: 0, Default: -1")
-    private int rewriteIndexSize = -1;
+    private Integer rewriteIndexSize = -1;
 
-    //8) Geometry Literal Expiry milliseconds
-    @Parameter(names = {"--geometry_expiry", "-gx"}, description = "Geometry Literal index item expiry. Default: 5000 milliseconds")
-    private int geometryIndexExpiry = 5000;
+    //8) Geometry Literal expiry milliseconds
+    @Parameter(names = {"--geometry_expiry", "-gx"}, description = "Geometry Literal index item expiry. Off: 0, Minimum: 1001, Default: 5000 milliseconds")
+    private Long geometryIndexExpiry = 5000l;
 
-    //9) Geometry Transform Index size
-    @Parameter(names = {"--transform_expiry", "-tx"}, description = "Geoemtry Transform index item expiry. Default: 5000 milliseconds")
-    private int transformIndexExpiry = 5000;
+    //9) Geometry Transform Index expiry milliseconds
+    @Parameter(names = {"--transform_expiry", "-tx"}, description = "Geoemtry Transform index item expiry. Off: 0, Minimum: 1001, Default: 5000 milliseconds")
+    private Long transformIndexExpiry = 5000l;
 
-    //10) Query Rewrite Index size
-    @Parameter(names = {"--rewrite_expiry", "-rx"}, description = "Query Rewrite index item expiry. Default: 5000 milliseconds")
-    private int rewriteIndexExpiry = 5000;
+    //10) Query Rewrite Index expiry milliseconds
+    @Parameter(names = {"--rewrite_expiry", "-rx"}, description = "Query Rewrite index item expiry. Off: 0, Minimum: 1001, Default: 5000 milliseconds")
+    private Long rewriteIndexExpiry = 5000l;
 
     //11) Load RDF file into dataset
     @Parameter(names = {"--rdf_file", "-rf"}, description = "RDF file to load into dataset.", converter = FileConverter.class)
@@ -138,27 +138,27 @@ public class ArgsConfig {
         return indexEnabled;
     }
 
-    public int getGeometryIndexSize() {
+    public Integer getGeometryIndexSize() {
         return geometryIndexSize;
     }
 
-    public int getTransformIndexSize() {
+    public Integer getTransformIndexSize() {
         return transformIndexSize;
     }
 
-    public int getRewriteIndexSize() {
+    public Integer getRewriteIndexSize() {
         return rewriteIndexSize;
     }
 
-    public int getGeometryIndexExpiry() {
+    public Long getGeometryIndexExpiry() {
         return geometryIndexExpiry;
     }
 
-    public int getTransformIndexExpiry() {
+    public Long getTransformIndexExpiry() {
         return transformIndexExpiry;
     }
 
-    public int getRewriteIndexExpiry() {
+    public Long getRewriteIndexExpiry() {
         return rewriteIndexExpiry;
     }
 
