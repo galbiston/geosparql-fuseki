@@ -1,4 +1,12 @@
-apply plugin: 'application'
+//import com.github.jengelman.gradle.plugins.shadow.transformers.ManifestResourceTransformer
+//import com.github.jengelman.gradle.plugins.shadow.transformers.ServicesFileTransformer
+//import com.github.jengelman.gradle.plugins.shadow.transformers.ApacheLicenseResourceTransformer
+//import com.github.jengelman.gradle.plugins.shadow.transformers.ApacheNoticeResourceTransformer
+
+plugins {
+    //id "com.github.johnrengelman.shadow" version "2.0.4"
+    id "application"
+}
 
 sourceCompatibility = '1.8'
 [compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
@@ -76,17 +84,13 @@ jar {
     manifest {
         attributes 'Main-Class': 'geosparql_fuseki.Main'
     }
-
 }
 
-buildscript {
-    repositories {
-        jcenter()
-    }
-    dependencies {
-        classpath 'com.github.jengelman.gradle.plugins:shadow:2.0.1'
-    }
+/*
+shadowJar {
+transform(com.github.jengelman.gradle.plugins.shadow.transformers.ManifestResourceTransformer)
+transform(com.github.jengelman.gradle.plugins.shadow.transformers.ServicesFileTransformer)
+transform(com.github.jengelman.gradle.plugins.shadow.transformers.ApacheLicenseResourceTransformer)
+transform(com.github.jengelman.gradle.plugins.shadow.transformers.ApacheNoticeResourceTransformer)
 }
-
-apply plugin: 'java'
-apply plugin: 'com.github.johnrengelman.shadow'
+ */
