@@ -167,14 +167,14 @@ public class GeosparqlOperations {
                 //Default Model
                 dataset.begin(ReadWrite.WRITE);
                 Model defaultModel = dataset.getDefaultModel();
-                applySchema(geosparqlSchema, defaultModel, "default");
+                applySchema(defaultModel, geosparqlSchema, "default");
 
                 //Named Models
                 Iterator<String> graphNames = dataset.listNames();
                 while (graphNames.hasNext()) {
                     String graphName = graphNames.next();
                     Model namedModel = dataset.getNamedModel(graphName);
-                    applySchema(geosparqlSchema, namedModel, graphName);
+                    applySchema(namedModel, geosparqlSchema, graphName);
                 }
 
                 dataset.commit();
@@ -191,7 +191,7 @@ public class GeosparqlOperations {
         if (!model.isEmpty()) {
             InfModel infModel = ModelFactory.createRDFSModel(geosparqlSchema, model);
             model.add(infModel);
-            LOGGER.info("Applied to graph: {}", graphName);
+            LOGGER.info("GeoSPARQL schema applied to graph: {}", graphName);
         }
     }
 
