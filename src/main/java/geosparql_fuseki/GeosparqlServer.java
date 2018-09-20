@@ -55,9 +55,9 @@ public class GeosparqlServer extends Thread {
         this.localServiceURL = "http://localhost:" + port + "/" + datasetName;
     }
 
-    private String checkDatasetName(String dataset) {
+    private String checkDatasetName(String datasetName) {
 
-        if (dataset.isEmpty()) {
+        if (datasetName.isEmpty()) {
             LOGGER.warn("Empty dataset name. Defaulting to '/ds'.");
             return "/ds";
         }
