@@ -17,6 +17,7 @@
  */
 package geosparql_fuseki;
 
+import geosparql_jena.implementation.GeoSPARQLSupport;
 import geosparql_jena.implementation.data_conversion.GeoSPARQLPredicates;
 import java.io.File;
 import java.io.InputStream;
@@ -41,13 +42,32 @@ import rdf_tables.file.FileReader;
  *
  *
  */
-public class DatasetOperations {
+public class GeosparqlOperations {
 
-    private static final InputStream GEOSPARQL_SCHEMA_FILE = DatasetOperations.class.getClassLoader().getResourceAsStream("geosparql_vocab_all_v1_0_1_updated.rdf");
+    private static final InputStream GEOSPARQL_SCHEMA_FILE = GeosparqlOperations.class.getClassLoader().getResourceAsStream("geosparql_vocab_all_v1_0_1_updated.rdf");
 
     private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
-    public static Dataset prepare(ArgsConfig argsConfig) {
+    public static Dataset setup(ArgsConfig argsConfig) {
+        //Load from TDB folder or use in-memory dataset.
+        Dataset dataset = GeosparqlOperations.prepareDataset(argsConfig);
+
+        //Load data into dataset.
+        loadData(argsConfig, dataset);
+
+        //Apply hasDefaultGeometry relations to single Feature hasGeometry Geometry.
+        applyDefaultGeometry(argsConfig, dataset);
+
+        //Apply GeoSPARQL schema and RDFS inferencing to the dataset.
+        applyInferencing(argsConfig, dataset);
+
+        //Setup GeoSPARQL
+        setupGeoSPARQL(argsConfig);
+
+        return dataset;
+    }
+
+    public static Dataset prepareDataset(ArgsConfig argsConfig) {
 
         Dataset dataset;
         File tdbFolder = argsConfig.getTdbFile();
@@ -172,6 +192,14 @@ public class DatasetOperations {
             InfModel infModel = ModelFactory.createRDFSModel(geosparqlSchema, model);
             model.add(infModel.getDeductionsModel());
             LOGGER.info("Applied to graph: {}", graphName);
+        }
+    }
+
+    public static void setupGeoSPARQL(ArgsConfig argsConfig) {
+        if (argsConfig.isIndexEnabled()) {
+            GeoSPARQLSupport.setupMemoryIndex(argsConfig.getGeometryIndexSize(), argsConfig.getTransformIndexSize(), argsConfig.getRewriteIndexSize(), argsConfig.getGeometryIndexExpiry(), argsConfig.getTransformIndexExpiry(), argsConfig.getRewriteIndexExpiry(), argsConfig.isQueryRewrite());
+        } else {
+            GeoSPARQLSupport.setupNoIndex(argsConfig.isQueryRewrite());
         }
     }
 
