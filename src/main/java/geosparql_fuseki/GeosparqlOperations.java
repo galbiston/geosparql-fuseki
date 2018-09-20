@@ -17,7 +17,7 @@
  */
 package geosparql_fuseki;
 
-import geosparql_jena.implementation.GeoSPARQLSupport;
+import geosparql_jena.implementation.GeoSPARQLConfig;
 import geosparql_jena.implementation.data_conversion.GeoSPARQLPredicates;
 import java.io.File;
 import java.io.InputStream;
@@ -197,9 +197,9 @@ public class GeosparqlOperations {
 
     public static void setupGeoSPARQL(ArgsConfig argsConfig) {
         if (argsConfig.isIndexEnabled()) {
-            GeoSPARQLSupport.setupMemoryIndex(argsConfig.getGeometryIndexSize(), argsConfig.getTransformIndexSize(), argsConfig.getRewriteIndexSize(), argsConfig.getGeometryIndexExpiry(), argsConfig.getTransformIndexExpiry(), argsConfig.getRewriteIndexExpiry(), argsConfig.isQueryRewrite());
+            GeoSPARQLConfig.setupMemoryIndex(argsConfig.getGeometryIndexSize(), argsConfig.getTransformIndexSize(), argsConfig.getRewriteIndexSize(), argsConfig.getGeometryIndexExpiry(), argsConfig.getTransformIndexExpiry(), argsConfig.getRewriteIndexExpiry(), argsConfig.isQueryRewrite());
         } else {
-            GeoSPARQLSupport.setupNoIndex(argsConfig.isQueryRewrite());
+            GeoSPARQLConfig.setupNoIndex(argsConfig.isQueryRewrite());
         }
     }
 
