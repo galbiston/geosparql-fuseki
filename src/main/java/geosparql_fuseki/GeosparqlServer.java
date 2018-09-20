@@ -43,14 +43,27 @@ public class GeosparqlServer extends Thread {
 
         this.port = port;
         this.loopback = loopback;
-        this.datasetName = datasetName.charAt(0) == '/' ? datasetName : "/" + datasetName; //Append "/" if missing.
+        this.datasetName = checkDatasetName(datasetName);
         this.allowUpdate = allowUpdate;
         Builder builder = FusekiServer.create()
                 .setPort(port)
                 .setLoopback(loopback);
         builder.add(datasetName, dataset, allowUpdate);
         this.server = builder.build();
+    }
 
+    private String checkDatasetName(String dataset) {
+
+        if (dataset.isEmpty()) {
+            LOGGER.warn("Empty dataset name. Defaulting to '/ds'.");
+            return "/ds";
+        }
+
+        if (datasetName.charAt(0) == '/') {
+            return datasetName;
+        } else {
+            return "/" + datasetName;
+        }
     }
 
     @Override
