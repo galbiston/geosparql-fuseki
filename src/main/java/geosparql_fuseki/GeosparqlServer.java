@@ -33,11 +33,13 @@ public class GeosparqlServer extends Thread {
     private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
     private final int port;
-    private final boolean loopback;
     private final String datasetName;
+    private final String localServiceURL;
+    private final boolean loopback;
     private final boolean allowUpdate;
     private final FusekiServer server;
     private Thread shutdownThread = null;
+
 
     public GeosparqlServer(int port, boolean loopback, String datasetName, Dataset dataset, boolean allowUpdate) {
 
@@ -50,6 +52,7 @@ public class GeosparqlServer extends Thread {
                 .setLoopback(loopback);
         builder.add(datasetName, dataset, allowUpdate);
         this.server = builder.build();
+        this.localServiceURL = "http://localhost:" + port + "/" + datasetName;
     }
 
     private String checkDatasetName(String dataset) {
@@ -103,12 +106,15 @@ public class GeosparqlServer extends Thread {
         return port;
     }
 
-    public boolean isLoopback() {
-        return loopback;
-    }
-
     public String getDatasetName() {
         return datasetName;
+    }
+
+    public String getLocalServiceURL() {
+        return localServiceURL;
+    }
+    public boolean isLoopback() {
+        return loopback;
     }
 
     public boolean isAllowUpdate() {
@@ -117,7 +123,7 @@ public class GeosparqlServer extends Thread {
 
     @Override
     public String toString() {
-        return "GeosparqlServer{" + "port=" + port + ", datasetName=" + datasetName + ", allowUpdate=" + allowUpdate + ", loopback=" + loopback + '}';
+        return "GeosparqlServer{" + "port=" + port + ", datasetName=" + datasetName + ", localServiceURL=" + localServiceURL + ", loopback=" + loopback + ", allowUpdate=" + allowUpdate + '}';
     }
 
 }
