@@ -47,7 +47,7 @@ public class MainTest {
         Dataset dataset = GeosparqlOperations.setup(argsConfig);
 
         //Configure server
-        SERVER = new GeosparqlServer(argsConfig.getPort(), argsConfig.isLoopback(), argsConfig.getDatsetName(), dataset, argsConfig.isUpdateAllowed());
+        SERVER = new GeosparqlServer(argsConfig.getPort(), argsConfig.getDatsetName(), argsConfig.isLoopbackOnly(), dataset, argsConfig.isUpdateAllowed());
         SERVER.start();
 
         System.out.println("Server: " + SERVER.getLocalServiceURL());

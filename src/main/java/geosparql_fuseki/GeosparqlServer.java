@@ -35,24 +35,26 @@ public class GeosparqlServer extends Thread {
     private final int port;
     private final String datasetName;
     private final String localServiceURL;
-    private final boolean loopback;
+    private final boolean loopbackOnly;
     private final boolean allowUpdate;
     private final FusekiServer server;
     private Thread shutdownThread = null;
 
 
-    public GeosparqlServer(int port, boolean loopback, String datasetName, Dataset dataset, boolean allowUpdate) {
+    public GeosparqlServer(int port, String datasetName, boolean loopbackOnly, Dataset dataset, boolean allowUpdate) {
 
         this.port = port;
-        this.loopback = loopback;
         this.datasetName = checkDatasetName(datasetName);
+        this.localServiceURL = "http://localhost:" + port + "/" + datasetName;
+        this.loopbackOnly = loopbackOnly;
         this.allowUpdate = allowUpdate;
+
         Builder builder = FusekiServer.create()
                 .setPort(port)
-                .setLoopback(loopback);
+                .setLoopback(loopbackOnly);
         builder.add(datasetName, dataset, allowUpdate);
         this.server = builder.build();
-        this.localServiceURL = "http://localhost:" + port + "/" + datasetName;
+
     }
 
     private String checkDatasetName(String datasetName) {
@@ -71,7 +73,7 @@ public class GeosparqlServer extends Thread {
 
     @Override
     public void run() {
-        LOGGER.info("Server Running - Port: {}, Loopback: {}, Dataset: {}", port, loopback, datasetName, allowUpdate);
+        LOGGER.info("GeoSPARQL Server: Running - Port: {}, Dataset: {}, Loopback Only: {},  Allow Update: {}", port, datasetName, loopbackOnly, allowUpdate);
         addShutdownHook();
         this.server.start();
     }
@@ -99,7 +101,7 @@ public class GeosparqlServer extends Thread {
     public void shutdown() {
         server.stop();
         removeShutdownHook();
-        LOGGER.info("GeoSPARQL Server Thread: Shutdown");
+        LOGGER.info("GeoSPARQL Server: Shutdown");
     }
 
     public int getPort() {
@@ -113,8 +115,8 @@ public class GeosparqlServer extends Thread {
     public String getLocalServiceURL() {
         return localServiceURL;
     }
-    public boolean isLoopback() {
-        return loopback;
+    public boolean isLoopbackOnly() {
+        return loopbackOnly;
     }
 
     public boolean isAllowUpdate() {
@@ -123,7 +125,7 @@ public class GeosparqlServer extends Thread {
 
     @Override
     public String toString() {
-        return "GeosparqlServer{" + "port=" + port + ", datasetName=" + datasetName + ", localServiceURL=" + localServiceURL + ", loopback=" + loopback + ", allowUpdate=" + allowUpdate + '}';
+        return "GeosparqlServer{" + "port=" + port + ", datasetName=" + datasetName + ", localServiceURL=" + localServiceURL + ", loopbackOnly=" + loopbackOnly + ", allowUpdate=" + allowUpdate + '}';
     }
 
 }

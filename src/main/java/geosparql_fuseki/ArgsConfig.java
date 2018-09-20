@@ -40,7 +40,7 @@ public class ArgsConfig {
 
     //3) Loopback only
     @Parameter(names = {"--loopback", "-l"}, description = "Local host loopback requests only. Default: true", arity = 1)
-    private boolean loopback = true;
+    private boolean loopbackOnly = true;
 
     //4) SPARQL update allowed
     @Parameter(names = {"--update", "-u"}, description = "SPARQL update allowed. Default: false")
@@ -118,8 +118,8 @@ public class ArgsConfig {
         return tdbFile;
     }
 
-    public boolean isLoopback() {
-        return loopback;
+    public boolean isLoopbackOnly() {
+        return loopbackOnly;
     }
 
     public boolean isInference() {
@@ -204,7 +204,7 @@ public class ArgsConfig {
 
     @Override
     public String toString() {
-        return "ArgsConfig{" + "port=" + port + ", datsetName=" + datsetName + ", loopback=" + loopback + ", updateAllowed=" + updateAllowed + ", tdbFile=" + tdbFile + ", inference=" + inference + ", applyDefaultGeometry=" + applyDefaultGeometry + ", rdfFile=" + rdfFile + ", rdfFormat=" + rdfFormat + ", tabularFile=" + tabularFile + ", tabularDelimiter=" + tabularDelimiter + ", queryRewrite=" + queryRewrite + ", indexEnabled=" + indexEnabled + ", geometryIndexSize=" + geometryIndexSize + ", transformIndexSize=" + transformIndexSize + ", rewriteIndexSize=" + rewriteIndexSize + ", geometryIndexExpiry=" + geometryIndexExpiry + ", transformIndexExpiry=" + transformIndexExpiry + ", rewriteIndexExpiry=" + rewriteIndexExpiry + '}';
+        return "ArgsConfig{" + "port=" + port + ", datsetName=" + datsetName + ", loopbackOnly=" + loopbackOnly + ", updateAllowed=" + updateAllowed + ", tdbFile=" + tdbFile + ", inference=" + inference + ", applyDefaultGeometry=" + applyDefaultGeometry + ", rdfFile=" + rdfFile + ", rdfFormat=" + rdfFormat + ", tabularFile=" + tabularFile + ", tabularDelimiter=" + tabularDelimiter + ", queryRewrite=" + queryRewrite + ", indexEnabled=" + indexEnabled + ", geometryIndexSize=" + geometryIndexSize + ", transformIndexSize=" + transformIndexSize + ", rewriteIndexSize=" + rewriteIndexSize + ", geometryIndexExpiry=" + geometryIndexExpiry + ", transformIndexExpiry=" + transformIndexExpiry + ", rewriteIndexExpiry=" + rewriteIndexExpiry + '}';
     }
 
 }
