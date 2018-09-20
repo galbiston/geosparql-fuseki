@@ -35,8 +35,8 @@ public class ArgsConfig {
     private int port = 3030;
 
     //2) Dataset name
-    @Parameter(names = {"--dataset", "-d"}, description = "Dataset name. Default: 'default'")
-    private String datsetName = "default";
+    @Parameter(names = {"--dataset", "-d"}, description = "Dataset name. Default: 'ds'")
+    private String datsetName = "ds";
 
     //3) Loopback only
     @Parameter(names = {"--loopback", "-l"}, description = "Local host loopback requests only. Default: true", arity = 1)
