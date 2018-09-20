@@ -190,7 +190,7 @@ public class GeosparqlOperations {
     public static void applySchema(Model model, Model geosparqlSchema, String graphName) {
         if (!model.isEmpty()) {
             InfModel infModel = ModelFactory.createRDFSModel(geosparqlSchema, model);
-            model.add(infModel.getDeductionsModel());
+            model.add(infModel);
             LOGGER.info("Applied to graph: {}", graphName);
         }
     }
