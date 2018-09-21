@@ -35,7 +35,7 @@ public class MainTest {
 
     @BeforeClass
     public static void setUpClass() {
-        String[] args = {"-rf", "geosparql_conformance.rdf", "-re", "xml"};
+        String[] args = {"-rf", "geosparql_test.rdf", "-re", "xml"};
 
         ArgsConfig argsConfig = new ArgsConfig();
         JCommander.newBuilder()
@@ -44,7 +44,7 @@ public class MainTest {
                 .parse(args);
 
         //Setup dataset
-        Dataset dataset = GeosparqlOperations.setup(argsConfig);
+        Dataset dataset = DatasetOperations.setup(argsConfig);
 
         //Configure server
         SERVER = new GeosparqlServer(argsConfig.getPort(), argsConfig.getDatsetName(), argsConfig.isLoopbackOnly(), dataset, argsConfig.isUpdateAllowed());
