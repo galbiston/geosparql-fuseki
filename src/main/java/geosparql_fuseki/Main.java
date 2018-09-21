@@ -34,7 +34,7 @@ public class Main {
                 .parse(args);
 
         //Setup dataset
-        Dataset dataset = GeosparqlOperations.setup(argsConfig);
+        Dataset dataset = DatasetOperations.setup(argsConfig);
 
         //Configure server
         GeosparqlServer server = new GeosparqlServer(argsConfig.getPort(), argsConfig.getDatsetName(), argsConfig.isLoopbackOnly(), dataset, argsConfig.isUpdateAllowed());
