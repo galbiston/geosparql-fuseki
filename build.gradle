@@ -12,9 +12,9 @@ sourceCompatibility = '1.8'
 [compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
 
 if (!hasProperty('mainClass')) {
-    ext.mainClass = "geosparql_fuseki.Main"
+    ext.mainClass = "io.github.galbiston.geosparql_fuseki.Main"
 }
-mainClassName = "geosparql_fuseki.Main"
+mainClassName = "io.github.galbiston.geosparql_fuseki.Main"
 
 repositories {
     mavenLocal()

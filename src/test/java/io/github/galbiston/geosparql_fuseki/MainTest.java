@@ -3,8 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package geosparql_fuseki;
+package io.github.galbiston.geosparql_fuseki;
 
+import io.github.galbiston.geosparql_fuseki.DatasetOperations;
+import io.github.galbiston.geosparql_fuseki.ArgsConfig;
+import io.github.galbiston.geosparql_fuseki.GeosparqlServer;
 import com.beust.jcommander.JCommander;
 import java.util.ArrayList;
 import java.util.List;

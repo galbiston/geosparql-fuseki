@@ -15,7 +15,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package geosparql_fuseki;
+package io.github.galbiston.geosparql_fuseki;
 
 import io.github.galbiston.geosparql_jena.configuration.GeoSPARQLConfig;
 import io.github.galbiston.geosparql_jena.configuration.GeoSPARQLOperations;
