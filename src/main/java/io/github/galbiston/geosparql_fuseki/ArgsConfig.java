@@ -31,31 +31,31 @@ import org.apache.jena.riot.RDFFormat;
 public class ArgsConfig {
 
     //1) Port
-    @Parameter(names = {"--port", "-p"}, description = "Port number. Default: 3030")
+    @Parameter(names = {"--port", "-p"}, description = "Port number.")
     private int port = 3030;
 
     //2) Dataset name
-    @Parameter(names = {"--dataset", "-d"}, description = "Dataset name. Default: 'ds'")
+    @Parameter(names = {"--dataset", "-d"}, description = "Dataset name.")
     private String datsetName = "ds";
 
     //3) Loopback only
-    @Parameter(names = {"--loopback", "-l"}, description = "Local host loopback requests only. Default: true", arity = 1)
+    @Parameter(names = {"--loopback", "-l"}, description = "Local host loopback requests only.", arity = 1)
     private boolean loopbackOnly = true;
 
     //4) SPARQL update allowed
-    @Parameter(names = {"--update", "-u"}, description = "SPARQL update allowed. Default: false")
+    @Parameter(names = {"--update", "-u"}, description = "SPARQL update allowed.")
     private boolean updateAllowed = false;
 
     //5) TDB folder
-    @Parameter(names = {"--tdb", "-t"}, description = "TDB folder of dataset. Default: memory dataset", converter = FileConverter.class)
+    @Parameter(names = {"--tdb", "-t"}, description = "TDB folder of dataset. Default set to memory dataset.", converter = FileConverter.class)
     private File tdbFile = null;
 
     //6) GeoSPARQL RDFS inference
-    @Parameter(names = {"--inference", "-i"}, description = "Enable GeoSPARQL RDFS schema and inferencing (class and property hierarchy). Inferences will be applied to the dataset. Updates to dataset may require server restart. Default: true", arity = 1)
+    @Parameter(names = {"--inference", "-i"}, description = "Enable GeoSPARQL RDFS schema and inferencing (class and property hierarchy). Inferences will be applied to the dataset. Updates to dataset may require server restart.", arity = 1)
     private boolean inference = true;
 
     //7) Apply default geometry to single Feature-Geometry
-    @Parameter(names = {"--default_geometry", "-dg"}, description = "Apply hasDefaultGeometry to single Feature hasGeometry Geometry statements. Additional properties will be added to the dataset. Default: false", arity = 1)
+    @Parameter(names = {"--default_geometry", "-dg"}, description = "Apply hasDefaultGeometry to single Feature hasGeometry Geometry statements. Additional properties will be added to the dataset.", arity = 1)
     private boolean applyDefaultGeometry = false;
 
     //8) Load RDF file into dataset
@@ -63,7 +63,7 @@ public class ArgsConfig {
     private File rdfFile = null;
 
     //9) RDF file format
-    @Parameter(names = {"--rdf_extension", "-re"}, description = "RDF file format: json-ld, json-rdf, nt, nq, thrift, trig, trix, ttl, ttl-pretty, xml, xml-plain, xml-pretty. Default: ttl", validateWith = FormatParameter.class, converter = FormatParameter.class)
+    @Parameter(names = {"--rdf_extension", "-re"}, description = "RDF file format: json-ld, json-rdf, nt, nq, thrift, trig, trix, ttl, ttl-pretty, xml, xml-plain, xml-pretty.", validateWith = FormatParameter.class, converter = FormatParameter.class)
     private RDFFormat rdfFormat = RDFFormat.TTL;
 
     //10) Load tabular file into dataset
@@ -71,43 +71,43 @@ public class ArgsConfig {
     private File tabularFile = null;
 
     //11) Delimiter value - COMMA, TAB, SPACE
-    @Parameter(names = {"--tabular_delim", "-td"}, description = "Column delimiter in the input file. Any character except ':', '^' and '|'. Keywords TAB, SPACE and COMMA are also supported. Default: ',' ", validateWith = DelimiterValidator.class)
+    @Parameter(names = {"--tabular_delim", "-td"}, description = "Column delimiter in the input file. Any character except ':', '^' and '|'. Keywords TAB, SPACE and COMMA are also supported.", validateWith = DelimiterValidator.class)
     private String tabularDelimiter = "COMMA";
 
     //12) Query Rewrite enabled
-    @Parameter(names = {"--rewrite", "-r"}, description = "Enable query rewrite. Default: true", arity = 1)
+    @Parameter(names = {"--rewrite", "-r"}, description = "Enable query rewrite.", arity = 1)
     private boolean queryRewrite = true;
 
     //13) Indexing enabled
-    @Parameter(names = {"--index", "-x"}, description = "Indexing enabled Default: true", arity = 1)
+    @Parameter(names = {"--index", "-x"}, description = "Indexing enabled.", arity = 1)
     private boolean indexEnabled = true;
 
     //14) Geometry Literal Index size
-    @Parameter(names = {"--geometry_size", "-gs"}, description = "Geometry Literal index item size. Unlimited: -1, Off: 0, Default: -1")
+    @Parameter(names = {"--geometry_size", "-gs"}, description = "Geometry Literal index item size. Unlimited: -1, Off: 0")
     private Integer geometryIndexSize = -1;
 
     //15) Geometry Transform Index size
-    @Parameter(names = {"--transform_size", "-ts"}, description = "Geoemtry Transform index item size. Unlimited: -1, Off: 0, Default: -1")
+    @Parameter(names = {"--transform_size", "-ts"}, description = "Geoemtry Transform index item size. Unlimited: -1, Off: 0")
     private Integer transformIndexSize = -1;
 
     //16) Query Rewrite Index size
-    @Parameter(names = {"--rewrite_size", "-rs"}, description = "Query Rewrite index item size. Unlimited: -1, Off: 0, Default: -1")
+    @Parameter(names = {"--rewrite_size", "-rs"}, description = "Query Rewrite index item size. Unlimited: -1, Off: 0")
     private Integer rewriteIndexSize = -1;
 
     //17) Geometry Literal expiry milliseconds
-    @Parameter(names = {"--geometry_expiry", "-gx"}, description = "Geometry Literal index item expiry. Off: 0, Minimum: 1001, Default: 5000 milliseconds")
+    @Parameter(names = {"--geometry_expiry", "-gx"}, description = "Geometry Literal index item expiry in milliseconds. Off: 0, Minimum: 1001")
     private Long geometryIndexExpiry = 5000l;
 
     //18) Geometry Transform Index expiry milliseconds
-    @Parameter(names = {"--transform_expiry", "-tx"}, description = "Geoemtry Transform index item expiry. Off: 0, Minimum: 1001, Default: 5000 milliseconds")
+    @Parameter(names = {"--transform_expiry", "-tx"}, description = "Geoemtry Transform index item expiry in milliseconds. Off: 0, Minimum: 1001")
     private Long transformIndexExpiry = 5000l;
 
     //19) Query Rewrite Index expiry milliseconds
-    @Parameter(names = {"--rewrite_expiry", "-rx"}, description = "Query Rewrite index item expiry. Off: 0, Minimum: 1001, Default: 5000 milliseconds")
+    @Parameter(names = {"--rewrite_expiry", "-rx"}, description = "Query Rewrite index item expiry in milliseconds. Off: 0, Minimum: 1001")
     private Long rewriteIndexExpiry = 5000l;
 
     //20) Help
-    @Parameter(names = {"--help", "-h"}, help = true)
+    @Parameter(names = {"--help", "-h"}, description = "Application help.", help = true)
     private boolean help = false;
 
     public int getPort() {
