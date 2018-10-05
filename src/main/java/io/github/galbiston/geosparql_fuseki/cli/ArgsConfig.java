@@ -19,7 +19,6 @@ package io.github.galbiston.geosparql_fuseki.cli;
 
 import com.beust.jcommander.Parameter;
 import com.beust.jcommander.converters.FileConverter;
-import io.github.galbiston.rdf_tables.cli.DelimiterValidator;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
@@ -59,50 +58,46 @@ public class ArgsConfig {
     private boolean applyDefaultGeometry = false;
 
     //8) Load RDF file into dataset
-    @Parameter(names = {"--rdf_file", "-rf"}, description = "Comma separated list of [RDF file path|graph name#RDF format] to load into dataset. Graph name is optional and will use default graph. RDF format is optional (default: ttl) or select from one of the following: json-ld, json-rdf, nt, nq, thrift, trig, trix, ttl, ttl-pretty, xml, xml-plain, xml-pretty.", validateWith = FileGraphFormat.class, converter = FileGraphFormat.class)
+    @Parameter(names = {"--rdf_file", "-rf"}, description = "Comma separated list of [RDF file path#graph name|RDF format] to load into dataset. Graph name is optional and will use default graph. RDF format is optional (default: ttl) or select from one of the following: json-ld, json-rdf, nt, nq, thrift, trig, trix, ttl, ttl-pretty, xml, xml-plain, xml-pretty.", validateWith = FileGraphFormat.class, converter = FileGraphFormat.class)
     private List<FileGraphFormat> fileGraphFormats = new ArrayList<>();
 
     //9) Load tabular file into dataset
-    @Parameter(names = {"--tabular_file", "-tf"}, description = "Tabular file to load into dataset default graph. (See RDF Tables for table formatting.)", converter = FileConverter.class)
-    private File tabularFile = null;
+    @Parameter(names = {"--tabular_file", "-tf"}, description = "Comma separated list of [Tabular file path#graph name|delimiter] to load into dataset. See RDF Tables for table formatting. Graph name is optional and will use default graph. Column delimiter is optional and will default to COMMA. Any character except ':', '^' and '|'. Keywords TAB, SPACE and COMMA are also supported.", validateWith = FileGraphDelimiter.class, converter = FileGraphDelimiter.class)
+    private List<FileGraphDelimiter> fileGraphDelimiters = new ArrayList<>();
 
-    //10) Delimiter value - COMMA, TAB, SPACE
-    @Parameter(names = {"--tabular_delim", "-td"}, description = "Column delimiter in the input file. Any character except ':', '^' and '|'. Keywords TAB, SPACE and COMMA are also supported.", validateWith = DelimiterValidator.class)
-    private String tabularDelimiter = "COMMA";
-
-    //11) Query Rewrite enabled
+    //10) Query Rewrite enabled
     @Parameter(names = {"--rewrite", "-r"}, description = "Enable query rewrite.", arity = 1)
     private boolean queryRewrite = true;
 
-    //12) Indexing enabled
+    //11) Indexing enabled
     @Parameter(names = {"--index", "-x"}, description = "Indexing enabled.", arity = 1)
     private boolean indexEnabled = true;
 
-    //13) Geometry Literal Index size
+    //12) Geometry Literal Index size
     @Parameter(names = {"--geometry_size", "-gs"}, description = "Geometry Literal index item size. Unlimited: -1, Off: 0")
     private Integer geometryIndexSize = -1;
 
-    //14) Geometry Transform Index size
+    //13) Geometry Transform Index size
     @Parameter(names = {"--transform_size", "-ts"}, description = "Geoemtry Transform index item size. Unlimited: -1, Off: 0")
     private Integer transformIndexSize = -1;
 
-    //15) Query Rewrite Index size
+    //14) Query Rewrite Index size
     @Parameter(names = {"--rewrite_size", "-rs"}, description = "Query Rewrite index item size. Unlimited: -1, Off: 0")
     private Integer rewriteIndexSize = -1;
 
-    //16) Geometry Literal expiry milliseconds
+    //15) Geometry Literal expiry milliseconds
     @Parameter(names = {"--geometry_expiry", "-gx"}, description = "Geometry Literal index item expiry in milliseconds. Off: 0, Minimum: 1001")
     private Long geometryIndexExpiry = 5000l;
 
-    //17) Geometry Transform Index expiry milliseconds
+    //16) Geometry Transform Index expiry milliseconds
     @Parameter(names = {"--transform_expiry", "-tx"}, description = "Geoemtry Transform index item expiry in milliseconds. Off: 0, Minimum: 1001")
     private Long transformIndexExpiry = 5000l;
 
-    //18) Query Rewrite Index expiry milliseconds
+    //17) Query Rewrite Index expiry milliseconds
     @Parameter(names = {"--rewrite_expiry", "-rx"}, description = "Query Rewrite index item expiry in milliseconds. Off: 0, Minimum: 1001")
     private Long rewriteIndexExpiry = 5000l;
 
-    //19) Help
+    //18) Help
     @Parameter(names = {"--help", "-h"}, description = "Application help.", help = true)
     private boolean help = false;
 
@@ -170,20 +165,12 @@ public class ArgsConfig {
         this.fileGraphFormats = fileGraphFormats;
     }
 
-    public File getTabularFile() {
-        return tabularFile;
+    public List<FileGraphDelimiter> getFileGraphDelimiters() {
+        return fileGraphDelimiters;
     }
 
-    public void setTabularFile(File tabularFile) {
-        this.tabularFile = tabularFile;
-    }
-
-    public String getTabularDelimiter() {
-        return tabularDelimiter;
-    }
-
-    public void setTabularDelimiter(String tabularDelimiter) {
-        this.tabularDelimiter = tabularDelimiter;
+    public void setFileGraphDelimiters(List<FileGraphDelimiter> fileGraphDelimiters) {
+        this.fileGraphDelimiters = fileGraphDelimiters;
     }
 
     public boolean isApplyDefaultGeometry() {
@@ -198,5 +185,9 @@ public class ArgsConfig {
         return help;
     }
 
+    @Override
+    public String toString() {
+        return "ArgsConfig{" + "port=" + port + ", datsetName=" + datsetName + ", loopbackOnly=" + loopbackOnly + ", updateAllowed=" + updateAllowed + ", tdbFile=" + tdbFile + ", inference=" + inference + ", applyDefaultGeometry=" + applyDefaultGeometry + ", fileGraphFormats=" + fileGraphFormats + ", fileGraphDelimiters=" + fileGraphDelimiters + ", queryRewrite=" + queryRewrite + ", indexEnabled=" + indexEnabled + ", geometryIndexSize=" + geometryIndexSize + ", transformIndexSize=" + transformIndexSize + ", rewriteIndexSize=" + rewriteIndexSize + ", geometryIndexExpiry=" + geometryIndexExpiry + ", transformIndexExpiry=" + transformIndexExpiry + ", rewriteIndexExpiry=" + rewriteIndexExpiry + ", help=" + help + '}';
+    }
 
 }

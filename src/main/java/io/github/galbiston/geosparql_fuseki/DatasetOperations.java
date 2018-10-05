@@ -18,6 +18,7 @@
 package io.github.galbiston.geosparql_fuseki;
 
 import io.github.galbiston.geosparql_fuseki.cli.ArgsConfig;
+import io.github.galbiston.geosparql_fuseki.cli.FileGraphDelimiter;
 import io.github.galbiston.geosparql_fuseki.cli.FileGraphFormat;
 import io.github.galbiston.geosparql_jena.configuration.GeoSPARQLConfig;
 import io.github.galbiston.geosparql_jena.configuration.GeoSPARQLOperations;
@@ -131,18 +132,38 @@ public class DatasetOperations {
 
         }
 
-        if (argsConfig.getTabularFile() != null) {
+        if (!argsConfig.getFileGraphDelimiters().isEmpty()
+            ) {
             try {
-                File tabFile = argsConfig.getTabularFile();
-                String delimiter = argsConfig.getTabularDelimiter();
-                LOGGER.info("Reading Tabular - Started - File: {}, Delimiter: {}", tabFile, delimiter);
-                //Default Model
-                dataset.begin(ReadWrite.WRITE);
-                Model defaultModel = dataset.getDefaultModel();
-                Model model = FileReader.convertCSVFile(tabFile, DelimiterValidator.getDelimiterCharacter(delimiter));
-                defaultModel.add(model);
-                dataset.commit();
-                LOGGER.info("Reading Tabular - Completed - File: {}, Delimiter: {}", tabFile, delimiter);
+                List<FileGraphDelimiter> fileGraphDelimiters = argsConfig.getFileGraphDelimiters();
+
+                for (FileGraphDelimiter fileGraphDelimiter : fileGraphDelimiters) {
+                    File tabFile = fileGraphDelimiter.getTabFile();
+                    String graphName = fileGraphDelimiter.getGraphName();
+                    String delimiter = fileGraphDelimiter.getDelimiter();
+                    LOGGER.info("Reading Tabular - Started - File: {}, Graph: {}, Delimiter: {}", tabFile, graphName, delimiter);
+
+                    dataset.begin(ReadWrite.WRITE);
+
+                    //Obtain the target model
+                    Model targetModel;
+                    if (graphName.isEmpty()) {
+                        targetModel = dataset.getDefaultModel();
+                    } else {
+                        if (dataset.containsNamedModel(graphName)) {
+                            targetModel = dataset.getNamedModel(graphName);
+                        } else {
+                            targetModel = ModelFactory.createDefaultModel();
+                            dataset.addNamedModel(graphName, targetModel);
+                        }
+                    }
+
+                    //Load file and add to target model.
+                    Model model = FileReader.convertCSVFile(tabFile, DelimiterValidator.getDelimiterCharacter(delimiter));
+                    targetModel.add(model);
+                    dataset.commit();
+                    LOGGER.info("Reading Tabular - Completed - File: {}, Graph: {},  Delimiter: {}", tabFile, graphName, delimiter);
+                }
             } catch (Exception ex) {
                 LOGGER.error("Write Error: {}", ex.getMessage());
             } finally {
