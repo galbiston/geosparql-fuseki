@@ -6,23 +6,15 @@
 
 package io.github.galbiston.geosparql_fuseki.cli;
 
-import com.beust.jcommander.IParameterValidator;
-import com.beust.jcommander.IStringConverter;
-import com.beust.jcommander.ParameterException;
-import io.github.galbiston.rdf_tables.cli.DelimiterValidator;
 import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Objects;
 
 /**
  *
  *
  */
-public class FileGraphDelimiter implements IStringConverter<List<FileGraphDelimiter>>, IParameterValidator {
+public class FileGraphDelimiter {
 
-    private static final DelimiterValidator DELIMITER_VALIDATOR = new DelimiterValidator();
-    private static final String DELIMITER_SEP = "|";
-    private static final String NAME_SEP = "#";
     private final File tabFile;
     private final String graphName;
     private final String delimiter;
@@ -51,59 +43,33 @@ public class FileGraphDelimiter implements IStringConverter<List<FileGraphDelimi
     }
 
     @Override
-    public List<FileGraphDelimiter> convert(String value) {
-        String[] values = value.split(",");
-        List<FileGraphDelimiter> fileList = new ArrayList<>();
-        for (String val : values) {
-            FileGraphDelimiter file = build(val);
-            fileList.add(file);
-        }
-        return fileList;
-    }
-
-    public FileGraphDelimiter build(String value) {
-        File file;
-        String name = "";
-        String delim = "COMMA";
-
-        String target = value;
-        if (target.contains(DELIMITER_SEP)) {
-            String[] parts = target.split(DELIMITER_SEP);
-            delim = parts[1];
-            target = parts[0];
-        }
-
-        if (target.contains(NAME_SEP)) {
-            String[] parts = target.split(NAME_SEP);
-            name = parts[1];
-            target = parts[0];
-        }
-
-        file = new File(target);
-
-        return new FileGraphDelimiter(file, name, delim);
-
+    public int hashCode() {
+        int hash = 7;
+        hash = 83 * hash + Objects.hashCode(this.tabFile);
+        hash = 83 * hash + Objects.hashCode(this.graphName);
+        hash = 83 * hash + Objects.hashCode(this.delimiter);
+        return hash;
     }
 
     @Override
-    public void validate(String name, String value) throws ParameterException {
-
-        int delimIndex;
-        int nameIndex;
-        String[] values = value.split(",");
-        for (String val : values) {
-            delimIndex = val.indexOf(DELIMITER_SEP);
-            nameIndex = val.indexOf(NAME_SEP);
-            if (delimIndex > -1 && nameIndex > -1) {
-                if (delimIndex < nameIndex) {
-                    throw new ParameterException("Parameter " + name + " and value " + val + " must have delimiter (" + delimIndex + ") after graph name (" + nameIndex + ").");
-                }
-            }
-
-            if (delimIndex > -1) {
-                DELIMITER_VALIDATOR.validate(name, val.substring(delimIndex));
-            }
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
         }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final FileGraphDelimiter other = (FileGraphDelimiter) obj;
+        if (!Objects.equals(this.graphName, other.graphName)) {
+            return false;
+        }
+        if (!Objects.equals(this.delimiter, other.delimiter)) {
+            return false;
+        }
+        return Objects.equals(this.tabFile, other.tabFile);
     }
 
 }
