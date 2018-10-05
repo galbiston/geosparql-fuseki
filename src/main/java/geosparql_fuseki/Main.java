@@ -28,11 +28,17 @@ public class Main {
     public static void main(String[] args) {
 
         ArgsConfig argsConfig = new ArgsConfig();
-        JCommander.newBuilder()
-                .addObject(argsConfig)
-                .build()
-                .parse(args);
 
+        JCommander jCommander = JCommander.newBuilder()
+                .addObject(argsConfig)
+                .build();
+
+        jCommander.setProgramName("GeoSPARQL Fuseki");
+        jCommander.parse(args);
+        if (argsConfig.isHelp()) {
+            jCommander.usage();
+            return;
+        }
         //Setup dataset
         Dataset dataset = DatasetOperations.setup(argsConfig);
 

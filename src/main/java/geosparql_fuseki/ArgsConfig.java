@@ -106,6 +106,10 @@ public class ArgsConfig {
     @Parameter(names = {"--rewrite_expiry", "-rx"}, description = "Query Rewrite index item expiry. Off: 0, Minimum: 1001, Default: 5000 milliseconds")
     private Long rewriteIndexExpiry = 5000l;
 
+    //20) Help
+    @Parameter(names = {"--help", "-h"}, help = true)
+    private boolean help = false;
+
     public int getPort() {
         return port;
     }
@@ -200,6 +204,10 @@ public class ArgsConfig {
 
     public void setApplyDefaultGeometry(boolean applyDefaultGeometry) {
         this.applyDefaultGeometry = applyDefaultGeometry;
+    }
+
+    public boolean isHelp() {
+        return help;
     }
 
     @Override
