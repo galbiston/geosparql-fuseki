@@ -82,7 +82,7 @@ run {
 
 jar {
     manifest {
-        attributes 'Main-Class': 'geosparql_fuseki.Main'
+        attributes 'Main-Class': 'io.github.galbiston.geosparql_fuseki.Main'
     }
 }
 
