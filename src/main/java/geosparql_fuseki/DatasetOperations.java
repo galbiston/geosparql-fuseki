@@ -17,8 +17,10 @@
  */
 package geosparql_fuseki;
 
-import geosparql_jena.configuration.GeoSPARQLConfig;
-import geosparql_jena.configuration.GeoSPARQLOperations;
+import io.github.galbiston.geosparql_jena.configuration.GeoSPARQLConfig;
+import io.github.galbiston.geosparql_jena.configuration.GeoSPARQLOperations;
+import io.github.galbiston.rdf_tables.cli.DelimiterValidator;
+import io.github.galbiston.rdf_tables.file.FileReader;
 import java.io.File;
 import java.lang.invoke.MethodHandles;
 import org.apache.jena.query.Dataset;
@@ -30,8 +32,6 @@ import org.apache.jena.riot.RDFFormat;
 import org.apache.jena.tdb.TDBFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import rdf_tables.cli.DelimiterValidator;
-import rdf_tables.file.FileReader;
 
 /**
  *

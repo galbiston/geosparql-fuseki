@@ -19,10 +19,10 @@ package geosparql_fuseki;
 
 import com.beust.jcommander.Parameter;
 import com.beust.jcommander.converters.FileConverter;
+import io.github.galbiston.rdf_tables.cli.DelimiterValidator;
+import io.github.galbiston.rdf_tables.cli.FormatParameter;
 import java.io.File;
 import org.apache.jena.riot.RDFFormat;
-import rdf_tables.cli.DelimiterValidator;
-import rdf_tables.cli.FormatParameter;
 
 /**
  *
