@@ -5,10 +5,8 @@
  */
 package io.github.galbiston.geosparql_fuseki;
 
-import io.github.galbiston.geosparql_fuseki.DatasetOperations;
-import io.github.galbiston.geosparql_fuseki.ArgsConfig;
-import io.github.galbiston.geosparql_fuseki.GeosparqlServer;
 import com.beust.jcommander.JCommander;
+import io.github.galbiston.geosparql_fuseki.cli.ArgsConfig;
 import java.util.ArrayList;
 import java.util.List;
 import org.apache.jena.query.Dataset;
@@ -38,7 +36,7 @@ public class MainTest {
 
     @BeforeClass
     public static void setUpClass() {
-        String[] args = {"-rf", "geosparql_test.rdf", "-re", "xml"};
+        String[] args = {"-rf", "geosparql_test.rdf|xml"};
 
         ArgsConfig argsConfig = new ArgsConfig();
         JCommander.newBuilder()

@@ -17,16 +17,20 @@
  */
 package io.github.galbiston.geosparql_fuseki;
 
+import io.github.galbiston.geosparql_fuseki.cli.ArgsConfig;
+import io.github.galbiston.geosparql_fuseki.cli.FileGraphFormat;
 import io.github.galbiston.geosparql_jena.configuration.GeoSPARQLConfig;
 import io.github.galbiston.geosparql_jena.configuration.GeoSPARQLOperations;
 import io.github.galbiston.rdf_tables.cli.DelimiterValidator;
 import io.github.galbiston.rdf_tables.file.FileReader;
 import java.io.File;
 import java.lang.invoke.MethodHandles;
+import java.util.List;
 import org.apache.jena.query.Dataset;
 import org.apache.jena.query.DatasetFactory;
 import org.apache.jena.query.ReadWrite;
 import org.apache.jena.rdf.model.Model;
+import org.apache.jena.rdf.model.ModelFactory;
 import org.apache.jena.riot.RDFDataMgr;
 import org.apache.jena.riot.RDFFormat;
 import org.apache.jena.tdb.TDBFactory;
@@ -85,20 +89,39 @@ public class DatasetOperations {
 
     public static void loadData(ArgsConfig argsConfig, Dataset dataset) {
 
-        if (argsConfig.getRdfFile() != null) {
+        if (!argsConfig.getFileGraphFormats().isEmpty()) {
 
             try {
 
-                File rdfFile = argsConfig.getRdfFile();
-                RDFFormat rdfFormat = argsConfig.getRdfFormat();
-                LOGGER.info("Reading RDF - Started - File: {}, RDF Format: {}", rdfFile, rdfFormat);
-                //Default Model
-                dataset.begin(ReadWrite.WRITE);
-                Model defaultModel = dataset.getDefaultModel();
-                Model model = RDFDataMgr.loadModel(rdfFile.getAbsolutePath(), rdfFormat.getLang());
-                defaultModel.add(model);
-                dataset.commit();
-                LOGGER.info("Reading RDF - Completed - File: {}, RDF Format: {}", rdfFile, rdfFormat);
+                List<FileGraphFormat> fileGraphFormats = argsConfig.getFileGraphFormats();
+
+                for (FileGraphFormat fileGraphFormat : fileGraphFormats) {
+                    File rdfFile = fileGraphFormat.getRdfFile();
+                    String graphName = fileGraphFormat.getGraphName();
+                    RDFFormat rdfFormat = fileGraphFormat.getRdfFormat();
+
+                    LOGGER.info("Reading RDF - Started - File: {}, Graph Name: {}, RDF Format: {}", rdfFile, graphName, rdfFormat);
+                    dataset.begin(ReadWrite.WRITE);
+
+                    //Obtain the target model
+                    Model targetModel;
+                    if (graphName.isEmpty()) {
+                        targetModel = dataset.getDefaultModel();
+                    } else {
+                        if (dataset.containsNamedModel(graphName)) {
+                            targetModel = dataset.getNamedModel(graphName);
+                        } else {
+                            targetModel = ModelFactory.createDefaultModel();
+                            dataset.addNamedModel(graphName, targetModel);
+                        }
+                    }
+
+                    //Load file and add to target model.
+                    Model model = RDFDataMgr.loadModel(rdfFile.getAbsolutePath(), rdfFormat.getLang());
+                    targetModel.add(model);
+                    dataset.commit();
+                    LOGGER.info("Reading RDF - Completed - File: {}, Graph Name: {}, RDF Format: {}", rdfFile, graphName, rdfFormat);
+                }
             } catch (Exception ex) {
                 LOGGER.error("Write Error: {}", ex.getMessage());
                 dataset.abort();

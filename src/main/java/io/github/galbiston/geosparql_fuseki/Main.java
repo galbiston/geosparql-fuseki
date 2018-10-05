@@ -17,6 +17,7 @@
  */
 package io.github.galbiston.geosparql_fuseki;
 
+import io.github.galbiston.geosparql_fuseki.cli.ArgsConfig;
 import com.beust.jcommander.JCommander;
 import org.apache.jena.query.Dataset;
 
