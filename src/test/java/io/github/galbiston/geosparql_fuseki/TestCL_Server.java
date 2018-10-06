@@ -18,15 +18,16 @@ import org.junit.AfterClass;
 import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 
 /**
  *
  *
  */
-public class TestRDF {
+public class TestCL_Server {
 
-    public TestRDF() {
+    public TestCL_Server() {
     }
 
     @BeforeClass
@@ -46,9 +47,10 @@ public class TestRDF {
     }
 
     /**
-     * Test of main method, of class Main.
+     * Test when running a command line server.
      */
     @Test
+    @Ignore
     public void testMain() {
         System.out.println("Test RDF");
 
