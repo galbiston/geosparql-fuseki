@@ -58,11 +58,11 @@ public class ArgsConfig {
     private boolean applyDefaultGeometry = false;
 
     //8) Load RDF file into dataset
-    @Parameter(names = {"--rdf_file", "-rf"}, description = "Comma separated list of [RDF file path#graph name|RDF format] to load into dataset. Graph name is optional and will use default graph. RDF format is optional (default: ttl) or select from one of the following: json-ld, json-rdf, nt, nq, thrift, trig, trix, ttl, ttl-pretty, xml, xml-plain, xml-pretty.", validateWith = RDFFileParameter.class, converter = RDFFileParameter.class)
+    @Parameter(names = {"--rdf_file", "-rf"}, description = "Comma separated list of [RDF file path#graph name|RDF format] to load into dataset. Graph name is optional and will use default graph. RDF format is optional (default: ttl) or select from one of the following: json-ld, json-rdf, nt, nq, thrift, trig, trix, ttl, ttl-pretty, xml, xml-plain, xml-pretty.", validateWith = RDFFileParameter.class, listConverter = RDFFileParameter.class)
     private List<FileGraphFormat> fileGraphFormats = new ArrayList<>();
 
     //9) Load tabular file into dataset
-    @Parameter(names = {"--tabular_file", "-tf"}, description = "Comma separated list of [Tabular file path#graph name|delimiter] to load into dataset. See RDF Tables for table formatting. Graph name is optional and will use default graph. Column delimiter is optional and will default to COMMA. Any character except ':', '^' and '|'. Keywords TAB, SPACE and COMMA are also supported.", validateWith = TabFileParameter.class, converter = TabFileParameter.class)
+    @Parameter(names = {"--tabular_file", "-tf"}, description = "Comma separated list of [Tabular file path#graph name|delimiter] to load into dataset. See RDF Tables for table formatting. Graph name is optional and will use default graph. Column delimiter is optional and will default to COMMA. Any character except ':', '^' and '|'. Keywords TAB, SPACE and COMMA are also supported.", validateWith = TabFileParameter.class, listConverter = TabFileParameter.class)
     private List<FileGraphDelimiter> fileGraphDelimiters = new ArrayList<>();
 
     //10) Query Rewrite enabled
