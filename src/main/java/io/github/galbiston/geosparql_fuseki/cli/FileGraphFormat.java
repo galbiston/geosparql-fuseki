@@ -40,7 +40,7 @@ public class FileGraphFormat {
 
     @Override
     public String toString() {
-        return "FileGraph{" + "rdfFile=" + rdfFile + ", graphName=" + graphName + ", rdfFormat=" + rdfFormat + '}';
+        return "FileGraphFormat{" + "rdfFile=" + rdfFile + ", graphName=" + graphName + ", rdfFormat=" + rdfFormat + '}';
     }
 
     @Override
