@@ -86,6 +86,14 @@ jar {
     }
 }
 
+if (JavaVersion.current().isJava8Compatible()) {
+    allprojects {
+        tasks.withType(Javadoc) {
+            options.addStringOption('Xdoclint:none', '-quiet')
+        }
+    }
+}
+
 /*
 shadowJar {
 transform(com.github.jengelman.gradle.plugins.shadow.transformers.ManifestResourceTransformer)
