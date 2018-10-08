@@ -24,7 +24,7 @@ GeoSPARQL Fuskei can be accessed as an embedded server using Maven etc. from Mav
 
 * Run the embedded server: `GeosparqlServer server = new GeosparqlServer(portNumber, datasetName, isLoopbackOnly, dataset, isUpdate);`
 
-Alternatively, run the distribution from the command line:
+Alternatively, run from the command line (see `releases` folder):
 
 * Load file into memory and run server: `.\geosparql-fuseki.bat -rf "test.rdf&xml"`
 
