@@ -22,8 +22,7 @@ import org.apache.jena.riot.RDFFormat;
 public class RDFFileParameter implements IStringConverter<List<FileGraphFormat>>, IParameterValidator {
 
     private static final FormatParameter FORMAT_PARAMETER = new FormatParameter();
-    private static final String FORMAT_SEP = "\\|";
-    private static final String FORMAT_SEP_CHARACTER = "|";
+    private static final String FORMAT_SEP = "&";
     private static final String NAME_SEP = "#";
 
     @Override
@@ -43,7 +42,7 @@ public class RDFFileParameter implements IStringConverter<List<FileGraphFormat>>
         RDFFormat format = RDFFormat.TTL;
 
         String target = value;
-        if (target.contains(FORMAT_SEP_CHARACTER)) {
+        if (target.contains(FORMAT_SEP)) {
             String[] parts = target.split(FORMAT_SEP);
             format = FORMAT_PARAMETER.convert(parts[1]);
             target = parts[0];
@@ -68,7 +67,7 @@ public class RDFFileParameter implements IStringConverter<List<FileGraphFormat>>
         int nameIndex;
         String[] values = value.split(",");
         for (String val : values) {
-            formatIndex = val.indexOf(FORMAT_SEP_CHARACTER);
+            formatIndex = val.indexOf(FORMAT_SEP);
             nameIndex = val.indexOf(NAME_SEP);
             if (formatIndex > -1 && nameIndex > -1) {
                 if (formatIndex < nameIndex) {

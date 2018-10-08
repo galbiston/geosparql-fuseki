@@ -47,7 +47,8 @@ public class TestCL_Server {
     }
 
     /**
-     * Test when running a command line server.
+     * Test when running a command line server.<br>
+     * .\geosparql-fuseki.bat -rf "test.rdf&xml"
      */
     @Test
     @Ignore
