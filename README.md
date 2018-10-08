@@ -169,4 +169,4 @@ $ java Main @/tmp/parameters
 ## Future Work
 * GUI to assist users when querying a dataset.
 
-Powered by Apache Jena.
+![Powered by Apache Jena](https://www.apache.org/logos/comdev-test/poweredby/jena.png "Powered by Apache Jena")
