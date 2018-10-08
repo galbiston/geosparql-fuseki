@@ -11,7 +11,20 @@ The full EPSG dataset is not distributed due to the the EPSG terms of use being 
 Several options are available to include the EPSG dataset by setting the `SIS_DATA` environment variable (http://sis.apache.org/epsg.html).
 
 ## Getting Started
-Run the distribution from the command line:
+
+GeoSPARQL Fuskei can be accessed as an embedded server using Maven etc. from Maven Central.
+
+```
+<dependency>
+    <groupId>io.github.galbiston</groupId>
+    <artifactId>geosparql-jena</artifactId>
+    <version>1.0.0</version>
+</dependency>
+```
+
+* Run the embedded server: `GeosparqlServer server = new GeosparqlServer(portNumber, datasetName, isLoopbackOnly, dataset, isUpdate);`
+
+Alternatively, run the distribution from the command line:
 
 * Load file into memory and run server: `.\geosparql-fuseki.bat -rf "test.rdf&xml"`
 
