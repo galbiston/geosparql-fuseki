@@ -1,4 +1,4 @@
-#GeoSPARQL Fuseki
+# GeoSPARQL Fuseki
 
 This application provides a HTTP server compliant with the GeoSPARQL standard.
 It uses the embedded server Fuseki from Apache Jena and provides additional parameters for dataset loading.
@@ -166,7 +166,7 @@ Supply the above parameters as a file:
 $ java Main @/tmp/parameters
 ```
 
-##Future Work
+## Future Work
 * GUI to assist users when querying a dataset.
 
 Powered by Apache Jena.
