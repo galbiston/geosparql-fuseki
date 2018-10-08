@@ -10,6 +10,17 @@ A subset of the EPSG spatial/coordinate reference systems are included by defaul
 The full EPSG dataset is not distributed due to the the EPSG terms of use being incompatible with the Apache Licence.
 Several options are available to include the EPSG dataset by setting the `SIS_DATA` environment variable (http://sis.apache.org/epsg.html).
 
+## Getting Started
+Run the distribution from the command line:
+
+* Load file into memory and run server: `.\geosparql-fuseki.bat -rf "test.rdf&xml"`
+
+* Load file into persistent TDB and run server: `.\geosparql-fuseki.bat -rf "test.rdf&xml" -t ".\TestTDB"`
+
+* Load from persistent TDB and run server: `.\geosparql-fuseki.bat -t ".\TestTDB"`
+
+* Load from persistent TDB, change port and run server: `.\geosparql-fuseki.bat -t ".\TestTDB" -p 3030`
+
 ## Command Line Arguments
 
 ### 1) Port
@@ -26,7 +37,7 @@ The port number of the server. Default: 3030
 
 The name of the dataset used in the URL. Default: ds
 
-### 3) Loopback onl
+### 3) Loopback only
 ```
 --loopback, -l
 ```
@@ -66,8 +77,8 @@ Apply hasDefaultGeometry to single Feature hasGeometry Geometry statements. Addi
 --rdf_file, -rf
 ```
 
-Comma separated list of [RDF file path#graph name|RDF format] to load into dataset. Graph name is optional and will use default graph. RDF format is optional (default: ttl) or select from one of the following: json-ld, json-rdf, nt, nq, thrift, trig, trix, ttl, ttl-pretty, xml, xml-plain, xml-pretty.
-e.g. `test.rdf#test|xml,test2.rdf` will load _test.rdf_ file into _test_ graph as _RDF/XML_ and _test2.rdf_ into _default_ graph as _TTL_.
+Comma separated list of [RDF file path#graph name&RDF format] to load into dataset. Graph name is optional and will use default graph. RDF format is optional (default: ttl) or select from one of the following: json-ld, json-rdf, nt, nq, thrift, trig, trix, ttl, ttl-pretty, xml, xml-plain, xml-pretty.
+e.g. `test.rdf#test&xml,test2.rdf` will load _test.rdf_ file into _test_ graph as _RDF/XML_ and _test2.rdf_ into _default_ graph as _TTL_.
 
 ### 9) Load Tabular file into dataset
 ```
