@@ -6,6 +6,8 @@
 plugins {
     //id "com.github.johnrengelman.shadow" version "2.0.4"
     id "application"
+    id "maven-publish"
+    id "signing"
 }
 
 sourceCompatibility = '1.8'
@@ -60,19 +62,83 @@ dependencies {
     testImplementation "org.apache.sis.non-free:sis-embedded-data:$sisVersion"
 }
 
-apply plugin: 'maven-publish'
+group = 'io.github.galbiston'
+version = '1.0.0'
+
+task sourcesJar(type: Jar) {
+    from sourceSets.main.allJava
+    classifier = 'sources'
+}
+
+task javadocJar(type: Jar) {
+    from javadoc
+    classifier = 'javadoc'
+}
+
 publishing {
     publications {
         mavenJava(MavenPublication) {
-            group = 'io.github.galbiston'
-            version = '1.0.0'
-            artifactId = 'geosparql-fuseki'
-            from components.java
+            pom {
+                artifactId = 'geosparql-fuseki'
+                from components.java
+                artifact sourcesJar
+                artifact javadocJar
+                pom {
+                    name = 'GeoSPARQL Jena'
+                    description = 'API implemenation of GeoSPARQL 1.0 standard using Apache Jena.'
+                    url = 'https://github.com/galbiston/geosparql-fuseki'
+                    licenses {
+                        license {
+                            name = 'The Apache License, Version 2.0'
+                            url = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                        }
+                    }
+                    developers {
+                        developer {
+                            name = 'Greg Albiston'
+                            email = 'galbiston@mail.com'
+                        }
+                    }
+                    scm {
+                        connection = 'scm:git:git://github.com/galbiston/geosparql-fuseki.git'
+                        developerConnection = 'scm:git:ssh://git@github.com:galbiston/geosparql-fuseki.git'
+                        url = 'https://github.com/galbiston/geosparql-jena.git'
+                    }
+                }
+            }
+        }
+    }
+    repositories {
+        maven {
+            url "https://oss.sonatype.org/service/local/staging/deploy/maven2"
+            credentials {
+                username sonatypeUsername
+                password sonatypePassword
+            }
         }
     }
 }
 
 build.finalizedBy(publishToMavenLocal)
+
+signing {
+    sign publishing.publications.mavenJava
+}
+
+
+javadoc {
+    if(JavaVersion.current().isJava9Compatible()) {
+        options.addBooleanOption('html4', true)
+    }
+}
+
+if (JavaVersion.current().isJava8Compatible()) {
+    allprojects {
+        tasks.withType(Javadoc) {
+            options.addStringOption('Xdoclint:none', '-quiet')
+        }
+    }
+}
 
 run {
     if (project.hasProperty("appArgs")) {
@@ -83,14 +149,6 @@ run {
 jar {
     manifest {
         attributes 'Main-Class': 'io.github.galbiston.geosparql_fuseki.Main'
-    }
-}
-
-if (JavaVersion.current().isJava8Compatible()) {
-    allprojects {
-        tasks.withType(Javadoc) {
-            options.addStringOption('Xdoclint:none', '-quiet')
-        }
     }
 }
 
