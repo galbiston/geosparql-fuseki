@@ -27,7 +27,7 @@ dependencies {
     ext.slf4jVersion = "1.7.25"
     implementation "org.slf4j:jcl-over-slf4j:$slf4jVersion"
 
-    ext.jenaVersion = "3.8.0"
+    ext.jenaVersion = "3.9.0"
     //implementation "org.apache.jena:apache-jena-libs:$jenaVersion"
     //Issue resolving apache-jena-libs in Maven projects. Use individual modules as provide jars.
     implementation "org.apache.jena:jena-core:$jenaVersion"
@@ -35,7 +35,7 @@ dependencies {
     implementation "org.apache.jena:jena-iri:$jenaVersion"
     implementation "org.apache.jena:jena-tdb:$jenaVersion"
 
-    implementation (group: 'org.apache.jena', name: 'jena-fuseki-embedded', version: jenaVersion){
+    implementation (group: 'org.apache.jena', name: 'jena-fuseki-server', version: jenaVersion){
         exclude group: "org.apache.jena", module: "apache-jena-libs"
         exclude group: "org.slf4j", module: "slf4j-log4j12"
     }
@@ -53,7 +53,7 @@ dependencies {
     implementation "org.apache.commons:commons-collections4:$commonsCollectionsVersion"
 
     //GeoSPARQL Extension
-    ext.geosparqlVersion = "1.0.0"
+    ext.geosparqlVersion = "1.0.1"
     implementation "io.github.galbiston:geosparql-jena:$geosparqlVersion"
 
     //Apache SIS EPSG database - allows full range of EPSG codes but download and licensing implications.
@@ -63,7 +63,7 @@ dependencies {
 }
 
 group = 'io.github.galbiston'
-version = '1.0.0'
+version = '1.0.1'
 
 task sourcesJar(type: Jar) {
     from sourceSets.main.allJava

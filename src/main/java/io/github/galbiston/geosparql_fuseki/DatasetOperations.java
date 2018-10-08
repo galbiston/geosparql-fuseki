@@ -159,7 +159,7 @@ public class DatasetOperations {
                     }
 
                     //Load file and add to target model.
-                    Model model = FileReader.convertCSVFile(tabFile, DelimiterValidator.getDelimiterCharacter(delimiter));
+                    Model model = FileReader.convertFile(tabFile, DelimiterValidator.getDelimiterCharacter(delimiter));
                     targetModel.add(model);
                     dataset.commit();
                     LOGGER.info("Reading Tabular - Completed - File: {}, Graph: {},  Delimiter: {}", tabFile, graphName, delimiter);

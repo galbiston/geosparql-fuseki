@@ -18,8 +18,8 @@
 package io.github.galbiston.geosparql_fuseki;
 
 import java.lang.invoke.MethodHandles;
-import org.apache.jena.fuseki.embedded.FusekiServer;
-import org.apache.jena.fuseki.embedded.FusekiServer.Builder;
+import org.apache.jena.fuseki.main.FusekiServer;
+import org.apache.jena.fuseki.main.FusekiServer.Builder;
 import org.apache.jena.query.Dataset;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -50,8 +50,8 @@ public class GeosparqlServer extends Thread {
         this.allowUpdate = allowUpdate;
 
         Builder builder = FusekiServer.create()
-                .setPort(port)
-                .setLoopback(loopbackOnly);
+                .port(port)
+                .loopback(loopbackOnly);
         builder.add(datasetName, dataset, allowUpdate);
         this.server = builder.build();
 
