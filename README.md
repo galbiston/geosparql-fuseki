@@ -18,7 +18,7 @@ GeoSPARQL Fuskei can be accessed as an embedded server using Maven etc. from Mav
 <dependency>
     <groupId>io.github.galbiston</groupId>
     <artifactId>geosparql-fuseki</artifactId>
-    <version>1.0.1</version>
+    <version>1.0.2</version>
 </dependency>
 ```
 
