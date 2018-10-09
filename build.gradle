@@ -37,7 +37,6 @@ dependencies {
 
     implementation (group: 'org.apache.jena', name: 'jena-fuseki-server', version: jenaVersion){
         exclude group: "org.apache.jena", module: "apache-jena-libs"
-        exclude group: "org.slf4j", module: "slf4j-log4j12"
     }
 
     ext.jcommanderVersion = "1.72"
