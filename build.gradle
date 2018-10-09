@@ -60,6 +60,10 @@ dependencies {
     //Use of EPSG data is incomptabile for bundling with Apache licence, see: http://sis.apache.org/epsg.html
     ext.sisVersion = "0.8"
     testImplementation "org.apache.sis.non-free:sis-embedded-data:$sisVersion"
+
+    //JAXB-API Resolves issue relating to JDK11 and Apache Jena dependency.
+    ext.jaxbapiVersion = "2.3.1"
+    implementation "javax.xml.bind:jaxb-api:$jaxbapiVersion"
 }
 
 group = 'io.github.galbiston'
