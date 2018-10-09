@@ -35,6 +35,19 @@ Alternatively, to run from the command line (see `releases` tab):
 
 * Load from persistent TDB, change port and run server: `.\geosparql-fuseki.bat -t ".\TestTDB" -p 3030`
 
+## SIS_DATA Environment Variable
+The Apache SIS library is used to support the recognition and transformation of Coordinate/Spatial Reference Systems.
+These Reference Systems are published as the EPSG dataset.
+The full EPSG dataset is not distributed due to the EPSG terms of use being incompatible with the Apache Licence.
+A subset of the EPSG spatial/coordinate reference systems are included by default but the wider dataset may be required.
+Several options are available to include the EPSG dataset by setting the `SIS_DATA` environment variable (http://sis.apache.org/epsg.html).
+
+An embedded EPSG dataset can be included in a Gradle application by adding the following dependency to `build.gradle`:
+```
+ext.sisVersion = "0.8"
+implementation "org.apache.sis.non-free:sis-embedded-data:$sisVersion"
+```
+
 ## Command Line Arguments
 
 ### 1) Port
