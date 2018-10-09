@@ -12,7 +12,8 @@ Several options are available to include the EPSG dataset by setting the `SIS_DA
 
 ## Getting Started
 
-GeoSPARQL Fuskei can be accessed as an embedded server using Maven etc. from Maven Central.
+GeoSPARQL Fuskei can be accessed as an embedded server using Maven etc. from Maven Central or run from the command line.
+SPARQL queries directly on Jena Datasets and Models can be done using the GeoSPARQL Jena project (https://github.com/galbiston/geosparql-jena).
 
 ```
 <dependency>
@@ -24,7 +25,7 @@ GeoSPARQL Fuskei can be accessed as an embedded server using Maven etc. from Mav
 
 * Run the embedded server: `GeosparqlServer server = new GeosparqlServer(portNumber, datasetName, isLoopbackOnly, dataset, isUpdate);`
 
-Alternatively, run from the command line (see `Releases` tab):
+Alternatively, to run from the command line (see `releases` tab):
 
 * Load file into memory and run server: `.\geosparql-fuseki.bat -rf "test.rdf&xml"`
 
