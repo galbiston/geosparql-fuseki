@@ -35,6 +35,23 @@ Alternatively, to run from the command line (see `releases` tab):
 
 * Load from persistent TDB, change port and run server: `.\geosparql-fuseki.bat -t ".\TestTDB" -p 3030`
 
+## SPARQL Query Example
+
+Once the default server is running it can be queried using Apache Jena as follows:
+
+```
+String service = "http://localhost:3030/ds";
+String query = ....;
+try (QueryExecution qe = QueryExecutionFactory.sparqlService(service, query)) {
+    ResultSet rs = qe.execSelect();
+    ResultSetFormatter.outputAsTSV(rs);
+}
+```
+
+The server will respond to any valid SPARQL HTTP so an alternative SPARQL framework can be used.
+More information on SPARQL querying using Apache Jena can be found on their website (https://jena.apache.org/tutorials/sparql.html).
+If you are using Apache Jena for queries within the same application as the server then you probably need to be using the GeoSPARQL Jena project (https://github.com/galbiston/geosparql-jena).
+
 ## SIS_DATA Environment Variable
 The Apache SIS library is used to support the recognition and transformation of Coordinate/Spatial Reference Systems.
 These Reference Systems are published as the EPSG dataset.
