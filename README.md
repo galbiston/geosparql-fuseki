@@ -23,9 +23,8 @@ SPARQL queries directly on Jena Datasets and Models can be done using the GeoSPA
 </dependency>
 ```
 
-* Run the embedded server: `GeosparqlServer server = new GeosparqlServer(portNumber, datasetName, isLoopbackOnly, dataset, isUpdate);`
-
-Alternatively, to run from the command line (see `releases` tab):
+### Command Line
+Run from the command line (see `releases` tab) and send queries over HTTP:
 
 * Load file into memory and run server: `.\geosparql-fuseki.bat -rf "test.rdf&xml"`
 
@@ -35,8 +34,14 @@ Alternatively, to run from the command line (see `releases` tab):
 
 * Load from persistent TDB, change port and run server: `.\geosparql-fuseki.bat -t ".\TestTDB" -p 3030`
 
-## SPARQL Query Example
+### Embedded Server
+Run within a Java application to provide GeoSPARQL support over HTTP to other applications:
 
+ `GeosparqlServer server = new GeosparqlServer(portNumber, datasetName, isLoopbackOnly, dataset, isUpdate);`
+
+See GeoSPARQL Jena project (https://github.com/galbiston/geosparql-jena) for direct querying within a Java application without using HTTP.
+
+## SPARQL Query Example
 Once the default server is running it can be queried using Apache Jena as follows:
 
 ```
@@ -59,10 +64,21 @@ The full EPSG dataset is not distributed due to the EPSG terms of use being inco
 A subset of the EPSG spatial/coordinate reference systems are included by default but the wider dataset may be required.
 Several options are available to include the EPSG dataset by setting the `SIS_DATA` environment variable (http://sis.apache.org/epsg.html).
 
-An embedded EPSG dataset can be included in a Gradle application by adding the following dependency to `build.gradle`:
+An embedded EPSG dataset can be included in an application by adding the following dependency:
+
+* Gradle dependency in `build.gradle`
 ```
 ext.sisVersion = "0.8"
 implementation "org.apache.sis.non-free:sis-embedded-data:$sisVersion"
+```
+
+* Maven dependency in `pom.xml`
+```
+<dependency>
+    <groupId>org.apache.sis.non-free</groupId>
+    <artifactId>sis-embedded-data</artifactId>
+    <version>0.8</version>
+</dependency>
 ```
 
 ## Command Line Arguments
