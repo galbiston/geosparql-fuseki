@@ -17,8 +17,8 @@
  */
 package io.github.galbiston.geosparql_fuseki;
 
-import io.github.galbiston.geosparql_fuseki.cli.ArgsConfig;
 import com.beust.jcommander.JCommander;
+import io.github.galbiston.geosparql_fuseki.cli.ArgsConfig;
 import org.apache.jena.query.Dataset;
 
 public class Main {
@@ -40,6 +40,7 @@ public class Main {
             jCommander.usage();
             return;
         }
+
         //Setup dataset
         Dataset dataset = DatasetOperations.setup(argsConfig);
 

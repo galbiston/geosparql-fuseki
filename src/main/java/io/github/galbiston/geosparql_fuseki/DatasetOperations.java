@@ -47,6 +47,9 @@ public class DatasetOperations {
     private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
     public static Dataset setup(ArgsConfig argsConfig) {
+        //Report the summary of the ArgsConfig
+        LOGGER.info("Command Line Configuration: {}", argsConfig.getSummary());
+
         //Load from TDB folder or use in-memory dataset.
         Dataset dataset = prepareDataset(argsConfig);
 
