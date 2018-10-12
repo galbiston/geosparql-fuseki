@@ -65,7 +65,9 @@ public class DatasetOperations {
 
         //Setup GeoSPARQL
         if (argsConfig.isIndexEnabled()) {
-            GeoSPARQLConfig.setupMemoryIndex(argsConfig.getGeometryIndexSize(), argsConfig.getTransformIndexSize(), argsConfig.getRewriteIndexSize(), argsConfig.getGeometryIndexExpiry(), argsConfig.getTransformIndexExpiry(), argsConfig.getRewriteIndexExpiry(), argsConfig.isQueryRewrite());
+            List<Integer> indexSizes = argsConfig.getIndexSizes();
+            List<Long> indexExpiries = argsConfig.getIndexExpiries();
+            GeoSPARQLConfig.setupMemoryIndex(indexSizes.get(0), indexSizes.get(1), indexSizes.get(2), indexExpiries.get(0), indexExpiries.get(1), indexExpiries.get(2), argsConfig.isQueryRewrite());
         } else {
             GeoSPARQLConfig.setupNoIndex(argsConfig.isQueryRewrite());
         }

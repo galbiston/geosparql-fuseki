@@ -21,6 +21,7 @@ import com.beust.jcommander.Parameter;
 import com.beust.jcommander.converters.FileConverter;
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -73,31 +74,15 @@ public class ArgsConfig {
     @Parameter(names = {"--index", "-x"}, description = "Indexing enabled.", arity = 1)
     private boolean indexEnabled = true;
 
-    //12) Geometry Literal Index size
-    @Parameter(names = {"--geometry_size", "-gs"}, description = "Geometry Literal index item size. Unlimited: -1, Off: 0")
-    private Integer geometryIndexSize = -1;
+    //12) Index sizes
+    @Parameter(names = {"--index_sizes", "-xs"}, description = "List of Index item sizes: [Geometry Literal, Geometry Transform, Query Rewrite]. Unlimited: -1, Off: 0", listConverter = IntegerListConverter.class)
+    private List<Integer> indexSizes = Arrays.asList(-1, -1, -1);
 
-    //13) Geometry Transform Index size
-    @Parameter(names = {"--transform_size", "-ts"}, description = "Geoemtry Transform index item size. Unlimited: -1, Off: 0")
-    private Integer transformIndexSize = -1;
+    //12) Index sizes
+    @Parameter(names = {"--index_expiry", "-xe"}, description = "List of Index item expiry in milliseconds: [Geometry Literal, Geometry Transform, Query Rewrite]. Off: 0, Minimum: 1001", listConverter = LongListConverter.class)
+    private List<Long> indexExpiries = Arrays.asList(5000l, 5000l, 5000l);
 
-    //14) Query Rewrite Index size
-    @Parameter(names = {"--rewrite_size", "-rs"}, description = "Query Rewrite index item size. Unlimited: -1, Off: 0")
-    private Integer rewriteIndexSize = -1;
-
-    //15) Geometry Literal expiry milliseconds
-    @Parameter(names = {"--geometry_expiry", "-gx"}, description = "Geometry Literal index item expiry in milliseconds. Off: 0, Minimum: 1001")
-    private Long geometryIndexExpiry = 5000l;
-
-    //16) Geometry Transform Index expiry milliseconds
-    @Parameter(names = {"--transform_expiry", "-tx"}, description = "Geoemtry Transform index item expiry in milliseconds. Off: 0, Minimum: 1001")
-    private Long transformIndexExpiry = 5000l;
-
-    //17) Query Rewrite Index expiry milliseconds
-    @Parameter(names = {"--rewrite_expiry", "-rx"}, description = "Query Rewrite index item expiry in milliseconds. Off: 0, Minimum: 1001")
-    private Long rewriteIndexExpiry = 5000l;
-
-    //18) Help
+    //14) Help
     @Parameter(names = {"--help", "-h"}, description = "Application help. @path/to/file can be used to submit parameters in a file.", help = true)
     private boolean help = false;
 
@@ -133,28 +118,12 @@ public class ArgsConfig {
         return indexEnabled;
     }
 
-    public Integer getGeometryIndexSize() {
-        return geometryIndexSize;
+    public List<Integer> getIndexSizes() {
+        return indexSizes;
     }
 
-    public Integer getTransformIndexSize() {
-        return transformIndexSize;
-    }
-
-    public Integer getRewriteIndexSize() {
-        return rewriteIndexSize;
-    }
-
-    public Long getGeometryIndexExpiry() {
-        return geometryIndexExpiry;
-    }
-
-    public Long getTransformIndexExpiry() {
-        return transformIndexExpiry;
-    }
-
-    public Long getRewriteIndexExpiry() {
-        return rewriteIndexExpiry;
+    public List<Long> getIndexExpiries() {
+        return indexExpiries;
     }
 
     public List<FileGraphFormat> getFileGraphFormats() {
@@ -187,7 +156,7 @@ public class ArgsConfig {
 
     @Override
     public String toString() {
-        return "ArgsConfig{" + "port=" + port + ", datsetName=" + datsetName + ", loopbackOnly=" + loopbackOnly + ", updateAllowed=" + updateAllowed + ", tdbFile=" + tdbFile + ", inference=" + inference + ", applyDefaultGeometry=" + applyDefaultGeometry + ", fileGraphFormats=" + fileGraphFormats + ", fileGraphDelimiters=" + fileGraphDelimiters + ", queryRewrite=" + queryRewrite + ", indexEnabled=" + indexEnabled + ", geometryIndexSize=" + geometryIndexSize + ", transformIndexSize=" + transformIndexSize + ", rewriteIndexSize=" + rewriteIndexSize + ", geometryIndexExpiry=" + geometryIndexExpiry + ", transformIndexExpiry=" + transformIndexExpiry + ", rewriteIndexExpiry=" + rewriteIndexExpiry + ", help=" + help + '}';
+        return "ArgsConfig{" + "port=" + port + ", datsetName=" + datsetName + ", loopbackOnly=" + loopbackOnly + ", updateAllowed=" + updateAllowed + ", tdbFile=" + tdbFile + ", inference=" + inference + ", applyDefaultGeometry=" + applyDefaultGeometry + ", fileGraphFormats=" + fileGraphFormats + ", fileGraphDelimiters=" + fileGraphDelimiters + ", queryRewrite=" + queryRewrite + ", indexEnabled=" + indexEnabled + ", indexSizes=" + indexSizes + ", indexExpiries=" + indexExpiries + ", help=" + help + '}';
     }
 
 }

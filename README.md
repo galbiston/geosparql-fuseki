@@ -149,49 +149,21 @@ Enable query rewrite extension of GeoSPARQL standard. Default: true
 Enable caching of re-usable data to improve query performance. Default: true
 See GeoSPARQL Jena project (https://github.com/galbiston/geosparql-jena) for more details.
 
-### 12) Geometry Literal Index size
+### 12) Index sizes
 ```
---geometry_size, -gs
-```
-
-Geometry Literal index item size. Unlimited: -1, Off: 0, Default: -1
-
-### 13) Geometry Transform Index size
-```
---transform_size, -ts
+--index_sizes, -xs
 ```
 
-Geometry Transform index item size. Unlimited: -1, Off: 0, Default: -1
+List of Index item sizes: [Geometry Literal, Geometry Transform, Query Rewrite]. Unlimited: -1, Off: 0 Unlimited: -1, Off: 0, Default: -1,-1,-1
 
-### 14) Query Rewrite Index size
+### 13) Index expiries
 ```
---rewrite_size, -rs
-```
-
-Query Rewrite index item size. Unlimited: -1, Off: 0, Default: -1
-
-### 15) Geometry Literal expiry milliseconds
-```
---geometry_expiry, -gx
+--index_expiry, -xe
 ```
 
-Geometry Literal index item expiry in milliseconds. Off: 0, Minimum: 1001, Default: 5000
+List of Index item expiry in milliseconds: [Geometry Literal, Geometry Transform, Query Rewrite]. Off: 0, Minimum: 1001, Default: 5000,5000,5000
 
-### 16) Geometry Transform expiry milliseconds
-```
---transform_expiry, -tx
-```
-
-Geometry Literal index item expiry in milliseconds. Off: 0, Minimum: 1001, Default: 5000
-
-### 17) Query Rewrite expiry milliseconds
-```
---rewrite_expiry, -rx
-```
-
-Query Rewrite index item expiry in milliseconds. Off: 0, Minimum: 1001, Default: 5000
-
-### 18) Properties File
+### 14) Properties File
 Supply the above parameters as a file:
 ```console
 $ java Main @/tmp/parameters
