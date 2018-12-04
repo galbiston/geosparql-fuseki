@@ -117,6 +117,7 @@ The server accepts updates to modify the dataset. Default: false
 ```
 
 An existing or new TDB folder used for the dataset. Default set to memory dataset.
+If accessing a TDB that has previously been loaded from an RDF file (--rdf_file option) and no updates have been made then using "--inference false" or "-i false" option will provide quicker setup.
 
 ### 6) GeoSPARQL RDFS inference
 ```
