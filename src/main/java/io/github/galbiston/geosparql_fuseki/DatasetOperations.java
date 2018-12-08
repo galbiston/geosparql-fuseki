@@ -56,6 +56,11 @@ public class DatasetOperations {
         //Load data into dataset.
         loadData(argsConfig, dataset);
 
+        //Apply validation of Geometry Literal.
+        if (argsConfig.isValidateGeometryLiteral()) {
+            GeoSPARQLOperations.validateGeometryLiteral(dataset);
+        }
+
         //Apply hasDefaultGeometry relations to single Feature hasGeometry Geometry.
         if (argsConfig.isApplyDefaultGeometry()) {
             GeoSPARQLOperations.applyDefaultGeometry(dataset);
@@ -137,8 +142,7 @@ public class DatasetOperations {
 
         }
 
-        if (!argsConfig.getFileGraphDelimiters().isEmpty()
-            ) {
+        if (!argsConfig.getFileGraphDelimiters().isEmpty()) {
             try {
                 List<FileGraphDelimiter> fileGraphDelimiters = argsConfig.getFileGraphDelimiters();
 
