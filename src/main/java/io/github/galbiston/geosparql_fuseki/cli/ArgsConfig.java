@@ -59,7 +59,7 @@ public class ArgsConfig {
     private boolean applyDefaultGeometry = false;
 
     //7) Validate geometry literals in the data
-    @Parameter(names = {"--default_geometry", "-dg"}, description = "Validate that the Geometry Literals in the dataset are valid.", arity = 1, order = 6)
+    @Parameter(names = {"--validate", "-v"}, description = "Validate that the Geometry Literals in the dataset are valid.", arity = 1, order = 6)
     private boolean validateGeometryLiteral = false;
 
     //9) Load RDF file into dataset
