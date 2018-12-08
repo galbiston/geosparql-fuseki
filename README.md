@@ -133,7 +133,14 @@ Enable GeoSPARQL RDFS schema and inferencing (class and property hierarchy). Inf
 
 Apply hasDefaultGeometry to single Feature hasGeometry Geometry statements. Additional properties will be added to the dataset. Default: false
 
-### 8) Load RDF file into dataset
+### 8) Validate Geometry Literals
+```
+--validate, -v
+```
+
+Validate that the Geometry Literals in the dataset are valid.
+
+### 9) Load RDF file into dataset
 ```
 --rdf_file, -rf
 ```
@@ -141,7 +148,7 @@ Apply hasDefaultGeometry to single Feature hasGeometry Geometry statements. Addi
 Comma separated list of [RDF file path#graph name&RDF format] to load into dataset. Graph name is optional and will use default graph. RDF format is optional (default: ttl) or select from one of the following: json-ld, json-rdf, nt, nq, thrift, trig, trix, ttl, ttl-pretty, xml, xml-plain, xml-pretty.
 e.g. `test.rdf#test&xml,test2.rdf` will load _test.rdf_ file into _test_ graph as _RDF/XML_ and _test2.rdf_ into _default_ graph as _TTL_.
 
-### 9) Load Tabular file into dataset
+### 10) Load Tabular file into dataset
 ```
 --tabular_file, -tf
 ```
@@ -151,14 +158,14 @@ e.g. `test.rdf#test|TAB,test2.rdf` will load _test.rdf_ file into _test_ graph a
 
 See RDF Tables project (https://github.com/galbiston/rdf-tables) for more details on tabular format.
 
-### 10) Query Rewrite enabled
+### 11) Query Rewrite enabled
 ```
 --rewrite, -r
 ```
 
 Enable query rewrite extension of GeoSPARQL standard. Default: true
 
-### 11) Indexing enabled
+### 12) Indexing enabled
 ```
 --index, -x
 ```
@@ -166,21 +173,21 @@ Enable query rewrite extension of GeoSPARQL standard. Default: true
 Enable caching of re-usable data to improve query performance. Default: true
 See GeoSPARQL Jena project (https://github.com/galbiston/geosparql-jena) for more details.
 
-### 12) Index sizes
+### 13) Index sizes
 ```
 --index_sizes, -xs
 ```
 
 List of Index item sizes: [Geometry Literal, Geometry Transform, Query Rewrite]. Unlimited: -1, Off: 0 Unlimited: -1, Off: 0, Default: -1,-1,-1
 
-### 13) Index expiries
+### 14) Index expiries
 ```
 --index_expiry, -xe
 ```
 
 List of Index item expiry in milliseconds: [Geometry Literal, Geometry Transform, Query Rewrite]. Off: 0, Minimum: 1001, Default: 5000,5000,5000
 
-### 14) Properties File
+### 15) Properties File
 Supply the above parameters as a file:
 ```console
 $ java Main @/tmp/parameters
