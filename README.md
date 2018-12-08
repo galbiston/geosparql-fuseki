@@ -117,30 +117,9 @@ The server accepts updates to modify the dataset. Default: false
 ```
 
 An existing or new TDB folder used for the dataset. Default set to memory dataset.
-If accessing a TDB that has previously been loaded from an RDF file (--rdf_file option) and no updates have been made then using "--inference false" or "-i false" option will provide quicker setup.
+If accessing a dataset for the first time with GeoSPARQL then consider the `--inference`, `--default_geometry` and `--validate` options. These operations may add additional statements to the dataset.
 
-### 6) GeoSPARQL RDFS inference
-```
---inference, -i
-```
-
-Enable GeoSPARQL RDFS schema and inferencing (class and property hierarchy). Inferences will be applied to the dataset. Updates to dataset may require server restart. Default: true
-
-### 7) Apply hasDefaultGeometry
-```
---default_geometry, -dg
-```
-
-Apply hasDefaultGeometry to single Feature hasGeometry Geometry statements. Additional properties will be added to the dataset. Default: false
-
-### 8) Validate Geometry Literals
-```
---validate, -v
-```
-
-Validate that the Geometry Literals in the dataset are valid.
-
-### 9) Load RDF file into dataset
+### 6) Load RDF file into dataset
 ```
 --rdf_file, -rf
 ```
@@ -148,7 +127,9 @@ Validate that the Geometry Literals in the dataset are valid.
 Comma separated list of [RDF file path#graph name&RDF format] to load into dataset. Graph name is optional and will use default graph. RDF format is optional (default: ttl) or select from one of the following: json-ld, json-rdf, nt, nq, thrift, trig, trix, ttl, ttl-pretty, xml, xml-plain, xml-pretty.
 e.g. `test.rdf#test&xml,test2.rdf` will load _test.rdf_ file into _test_ graph as _RDF/XML_ and _test2.rdf_ into _default_ graph as _TTL_.
 
-### 10) Load Tabular file into dataset
+Consider the `--inference`, `--default_geometry` and `--validate` options. These operations may add additional statements to the dataset.
+
+### 7) Load Tabular file into dataset
 ```
 --tabular_file, -tf
 ```
@@ -157,6 +138,29 @@ Comma separated list of [Tabular file path#graph name|delimiter] to load into da
 e.g. `test.rdf#test|TAB,test2.rdf` will load _test.rdf_ file into _test_ graph as _TAB_ delimited and _test2.rdf_ into _default_ graph as _COMMA_ delimited.
 
 See RDF Tables project (https://github.com/galbiston/rdf-tables) for more details on tabular format.
+
+Consider the `--inference`, `--default_geometry` and `--validate` options. These operations may add additional statements to the dataset.
+
+### 8) GeoSPARQL RDFS inference
+```
+--inference, -i
+```
+
+Enable GeoSPARQL RDFS schema and inferencing (class and property hierarchy). Inferences will be applied to the dataset. Updates to dataset may require server restart. Default: false
+
+### 9) Apply hasDefaultGeometry
+```
+--default_geometry, -dg
+```
+
+Apply hasDefaultGeometry to single Feature hasGeometry Geometry statements. Additional properties will be added to the dataset. Default: false
+
+### 10) Validate Geometry Literals
+```
+--validate, -v
+```
+
+Validate that the Geometry Literals in the dataset are valid. Default: false
 
 ### 11) Query Rewrite enabled
 ```

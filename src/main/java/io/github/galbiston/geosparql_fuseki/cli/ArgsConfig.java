@@ -50,25 +50,25 @@ public class ArgsConfig {
     @Parameter(names = {"--tdb", "-t"}, description = "TDB folder of dataset. Default set to memory dataset.", converter = FileConverter.class, order = 4)
     private File tdbFile = null;
 
-    //6) GeoSPARQL RDFS inference
-    @Parameter(names = {"--inference", "-i"}, description = "Enable GeoSPARQL RDFS schema and inferencing (class and property hierarchy). Inferences will be applied to the dataset. Updates to dataset may require server restart.", arity = 1, order = 5)
-    private boolean inference = false;
-
-    //7) Apply default geometry to single Feature-Geometry
-    @Parameter(names = {"--default_geometry", "-dg"}, description = "Apply hasDefaultGeometry to single Feature hasGeometry Geometry statements. Additional properties will be added to the dataset.", arity = 1, order = 6)
-    private boolean applyDefaultGeometry = false;
-
-    //7) Validate geometry literals in the data
-    @Parameter(names = {"--validate", "-v"}, description = "Validate that the Geometry Literals in the dataset are valid.", arity = 1, order = 6)
-    private boolean validateGeometryLiteral = false;
-
-    //9) Load RDF file into dataset
-    @Parameter(names = {"--rdf_file", "-rf"}, description = "Comma separated list of [RDF file path#graph name|RDF format] to load into dataset. Graph name is optional and will use default graph. RDF format is optional (default: ttl) or select from one of the following: json-ld, json-rdf, nt, nq, thrift, trig, trix, ttl, ttl-pretty, xml, xml-plain, xml-pretty.", validateWith = RDFFileParameter.class, listConverter = RDFFileParameter.class, order = 8)
+    //6) Load RDF file into dataset
+    @Parameter(names = {"--rdf_file", "-rf"}, description = "Comma separated list of [RDF file path#graph name|RDF format] to load into dataset. Graph name is optional and will use default graph. RDF format is optional (default: ttl) or select from one of the following: json-ld, json-rdf, nt, nq, thrift, trig, trix, ttl, ttl-pretty, xml, xml-plain, xml-pretty.", validateWith = RDFFileParameter.class, listConverter = RDFFileParameter.class, order = 5)
     private List<FileGraphFormat> fileGraphFormats = new ArrayList<>();
 
-    //10) Load tabular file into dataset
-    @Parameter(names = {"--tabular_file", "-tf"}, description = "Comma separated list of [Tabular file path#graph name|delimiter] to load into dataset. See RDF Tables for table formatting. Graph name is optional and will use default graph. Column delimiter is optional and will default to COMMA. Any character except ':', '^' and '|'. Keywords TAB, SPACE and COMMA are also supported.", validateWith = TabFileParameter.class, listConverter = TabFileParameter.class, order = 9)
+    //7) Load tabular file into dataset
+    @Parameter(names = {"--tabular_file", "-tf"}, description = "Comma separated list of [Tabular file path#graph name|delimiter] to load into dataset. See RDF Tables for table formatting. Graph name is optional and will use default graph. Column delimiter is optional and will default to COMMA. Any character except ':', '^' and '|'. Keywords TAB, SPACE and COMMA are also supported.", validateWith = TabFileParameter.class, listConverter = TabFileParameter.class, order = 6)
     private List<FileGraphDelimiter> fileGraphDelimiters = new ArrayList<>();
+
+    //8) GeoSPARQL RDFS inference
+    @Parameter(names = {"--inference", "-i"}, description = "Enable GeoSPARQL RDFS schema and inferencing (class and property hierarchy). Inferences will be applied to the dataset. Updates to dataset may require server restart.", arity = 1, order = 7)
+    private boolean inference = false;
+
+    //9) Apply default geometry to single Feature-Geometry
+    @Parameter(names = {"--default_geometry", "-dg"}, description = "Apply hasDefaultGeometry to single Feature hasGeometry Geometry statements. Additional properties will be added to the dataset.", arity = 1, order = 8)
+    private boolean applyDefaultGeometry = false;
+
+    //10) Validate geometry literals in the data
+    @Parameter(names = {"--validate", "-v"}, description = "Validate that the Geometry Literals in the dataset are valid.", arity = 1, order = 9)
+    private boolean validateGeometryLiteral = false;
 
     //11) Query Rewrite enabled
     @Parameter(names = {"--rewrite", "-r"}, description = "Enable query rewrite.", arity = 1, order = 10)
