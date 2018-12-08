@@ -52,7 +52,7 @@ public class ArgsConfig {
 
     //6) GeoSPARQL RDFS inference
     @Parameter(names = {"--inference", "-i"}, description = "Enable GeoSPARQL RDFS schema and inferencing (class and property hierarchy). Inferences will be applied to the dataset. Updates to dataset may require server restart.", arity = 1, order = 5)
-    private boolean inference = true;
+    private boolean inference = false;
 
     //7) Apply default geometry to single Feature-Geometry
     @Parameter(names = {"--default_geometry", "-dg"}, description = "Apply hasDefaultGeometry to single Feature hasGeometry Geometry statements. Additional properties will be added to the dataset.", arity = 1, order = 6)
