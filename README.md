@@ -167,7 +167,7 @@ Validate that the Geometry Literals in the dataset are valid. Default: false
 --rewrite, -r
 ```
 
-Enable query rewrite extension of GeoSPARQL standard, which relies upon the 'hasDefaultGeometry' property. The 'default_geometry' may be useful for adding the 'hasDefaultGeometry' to a dataset. Default: true
+Enable query rewrite extension of GeoSPARQL standard to simplify queries, which relies upon the 'hasDefaultGeometry' property. The 'default_geometry' may be useful for adding the 'hasDefaultGeometry' to a dataset. Default: true
 
 ### 12) Indexing enabled
 ```
