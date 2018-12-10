@@ -40,7 +40,6 @@ public class GeosparqlServer extends Thread {
     private final FusekiServer server;
     private Thread shutdownThread = null;
 
-
     public GeosparqlServer(int port, String datasetName, boolean loopbackOnly, Dataset dataset, boolean allowUpdate) {
 
         this.port = port;
@@ -115,6 +114,7 @@ public class GeosparqlServer extends Thread {
     public String getLocalServiceURL() {
         return localServiceURL;
     }
+
     public boolean isLoopbackOnly() {
         return loopbackOnly;
     }
