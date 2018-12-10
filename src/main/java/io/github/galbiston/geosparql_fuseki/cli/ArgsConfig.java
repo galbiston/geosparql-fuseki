@@ -70,28 +70,32 @@ public class ArgsConfig {
     @Parameter(names = {"--validate", "-v"}, description = "Validate that the Geometry Literals in the dataset are valid.", arity = 1, order = 9)
     private boolean validateGeometryLiteral = false;
 
-    //11) Query Rewrite enabled
-    @Parameter(names = {"--rewrite", "-r"}, description = "Enable query rewrite.", arity = 1, order = 10)
+    //11) Convert Geo predicates in the data to Geometry with WKT WGS84 Point GeometryLiteral.
+    @Parameter(names = {"--convert_geo", "-c"}, description = "Convert Geo predicates in the data to Geometry with WKT WGS84 Point Geometry Literal.", arity = 1, order = 9)
+    private boolean convertGeoPredicates = false;
+
+    //12) Query Rewrite enabled
+    @Parameter(names = {"--rewrite", "-r"}, description = "Enable query rewrite.", arity = 1, order = 11)
     private boolean queryRewrite = true;
 
-    //12) Indexing enabled
-    @Parameter(names = {"--index", "-x"}, description = "Indexing enabled.", arity = 1, order = 11)
+    //13) Indexing enabled
+    @Parameter(names = {"--index", "-x"}, description = "Indexing enabled.", arity = 1, order = 12)
     private boolean indexEnabled = true;
 
-    //13) Index sizes
-    @Parameter(names = {"--index_sizes", "-xs"}, description = "List of Index item sizes: [Geometry Literal, Geometry Transform, Query Rewrite]. Unlimited: -1, Off: 0", listConverter = IntegerListConverter.class, order = 12)
+    //14) Index sizes
+    @Parameter(names = {"--index_sizes", "-xs"}, description = "List of Index item sizes: [Geometry Literal, Geometry Transform, Query Rewrite]. Unlimited: -1, Off: 0", listConverter = IntegerListConverter.class, order = 13)
     private List<Integer> indexSizes = Arrays.asList(-1, -1, -1);
 
-    //14) Index sizes
-    @Parameter(names = {"--index_expiry", "-xe"}, description = "List of Index item expiry in milliseconds: [Geometry Literal, Geometry Transform, Query Rewrite]. Off: 0, Minimum: 1001", listConverter = LongListConverter.class, order = 13)
+    //15) Index sizes
+    @Parameter(names = {"--index_expiry", "-xe"}, description = "List of Index item expiry in milliseconds: [Geometry Literal, Geometry Transform, Query Rewrite]. Off: 0, Minimum: 1001", listConverter = LongListConverter.class, order = 14)
     private List<Long> indexExpiries = Arrays.asList(5000l, 5000l, 5000l);
 
-    //15) Spatial Extension enabled
-    @Parameter(names = {"--spatial_extension", "-s"}, description = "Spatial Extension enabled.", arity = 1, order = 14)
+    //16) Spatial Extension enabled
+    @Parameter(names = {"--spatial_extension", "-s"}, description = "Spatial Extension enabled.", arity = 1, order = 15)
     private boolean spatialExtensionEnabled = true;
 
-    //16) Help
-    @Parameter(names = {"--help", "-h"}, description = "Application help. @path/to/file can be used to submit parameters in a file.", help = true, order = 15)
+    //17) Help
+    @Parameter(names = {"--help", "-h"}, description = "Application help. @path/to/file can be used to submit parameters in a file.", help = true, order = 16)
     private boolean help = false;
 
     public int getPort() {
@@ -112,10 +116,6 @@ public class ArgsConfig {
 
     public boolean isLoopbackOnly() {
         return loopbackOnly;
-    }
-
-    public boolean isInference() {
-        return inference;
     }
 
     public boolean isQueryRewrite() {
@@ -154,6 +154,10 @@ public class ArgsConfig {
         this.fileGraphDelimiters = fileGraphDelimiters;
     }
 
+    public boolean isInference() {
+        return inference;
+    }
+
     public boolean isApplyDefaultGeometry() {
         return applyDefaultGeometry;
     }
@@ -166,6 +170,10 @@ public class ArgsConfig {
         return validateGeometryLiteral;
     }
 
+    public boolean isConvertGeoPredicates() {
+        return convertGeoPredicates;
+    }
+
     public boolean isSpatialExtensionEnabled() {
         return spatialExtensionEnabled;
     }
@@ -175,12 +183,12 @@ public class ArgsConfig {
     }
 
     public String getSummary() {
-        return "port=" + port + ", datsetName=" + datsetName + ", loopbackOnly=" + loopbackOnly + ", updateAllowed=" + updateAllowed + ", tdbFile=" + tdbFile + ", fileGraphFormats=" + fileGraphFormats + ", fileGraphDelimiters=" + fileGraphDelimiters + ", inference=" + inference + ", applyDefaultGeometry=" + applyDefaultGeometry + ", validateGeometryLiteral=" + validateGeometryLiteral + ", queryRewrite=" + queryRewrite + ", indexEnabled=" + indexEnabled + ", indexSizes=" + indexSizes + ", indexExpiries=" + indexExpiries + ", spatialExtensionEnabled=" + spatialExtensionEnabled + ", help=" + help;
+        return "port=" + port + ", datsetName=" + datsetName + ", loopbackOnly=" + loopbackOnly + ", updateAllowed=" + updateAllowed + ", tdbFile=" + tdbFile + ", fileGraphFormats=" + fileGraphFormats + ", fileGraphDelimiters=" + fileGraphDelimiters + ", inference=" + inference + ", applyDefaultGeometry=" + applyDefaultGeometry + ", validateGeometryLiteral=" + validateGeometryLiteral + ", convertGeoPredicates=" + convertGeoPredicates + ", queryRewrite=" + queryRewrite + ", indexEnabled=" + indexEnabled + ", indexSizes=" + indexSizes + ", indexExpiries=" + indexExpiries + ", spatialExtensionEnabled=" + spatialExtensionEnabled + ", help=" + help;
     }
 
     @Override
     public String toString() {
-        return "ArgsConfig{" + "port=" + port + ", datsetName=" + datsetName + ", loopbackOnly=" + loopbackOnly + ", updateAllowed=" + updateAllowed + ", tdbFile=" + tdbFile + ", fileGraphFormats=" + fileGraphFormats + ", fileGraphDelimiters=" + fileGraphDelimiters + ", inference=" + inference + ", applyDefaultGeometry=" + applyDefaultGeometry + ", validateGeometryLiteral=" + validateGeometryLiteral + ", queryRewrite=" + queryRewrite + ", indexEnabled=" + indexEnabled + ", indexSizes=" + indexSizes + ", indexExpiries=" + indexExpiries + ", spatialExtensionEnabled=" + spatialExtensionEnabled + ", help=" + help + '}';
+        return "ArgsConfig{" + "port=" + port + ", datsetName=" + datsetName + ", loopbackOnly=" + loopbackOnly + ", updateAllowed=" + updateAllowed + ", tdbFile=" + tdbFile + ", fileGraphFormats=" + fileGraphFormats + ", fileGraphDelimiters=" + fileGraphDelimiters + ", inference=" + inference + ", applyDefaultGeometry=" + applyDefaultGeometry + ", validateGeometryLiteral=" + validateGeometryLiteral + ", convertGeoPredicates=" + convertGeoPredicates + ", queryRewrite=" + queryRewrite + ", indexEnabled=" + indexEnabled + ", indexSizes=" + indexSizes + ", indexExpiries=" + indexExpiries + ", spatialExtensionEnabled=" + spatialExtensionEnabled + ", help=" + help + '}';
     }
 
 }

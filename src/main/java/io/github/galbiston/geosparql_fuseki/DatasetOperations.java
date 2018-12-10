@@ -56,9 +56,10 @@ public class DatasetOperations {
         //Load data into dataset.
         loadData(argsConfig, dataset);
 
-        //Apply validation of Geometry Literal.
-        if (argsConfig.isValidateGeometryLiteral()) {
-            GeoSPARQLOperations.validateGeometryLiteral(dataset);
+        //Convert Geo predicates to Geometry Literals.
+        if (argsConfig.isConvertGeoPredicates()) //Apply validation of Geometry Literal.
+        {
+            GeoSPARQLOperations.convertGeoPredicates(dataset);
         }
 
         //Apply hasDefaultGeometry relations to single Feature hasGeometry Geometry.
