@@ -162,14 +162,28 @@ Apply hasDefaultGeometry to single Feature hasGeometry Geometry statements. Addi
 
 Validate that the Geometry Literals in the dataset are valid. Default: false
 
-### 11) Query Rewrite enabled
+### 11) Convert Geo predicates
+```
+--convert_geo, -c
+```
+
+Convert Geo predicates in the data to Geometry with WKT WGS84 Point GeometryLiteral. Default: false
+
+### 12)  Remove Geo predicates
+```
+--remove_geo, -rg
+```
+
+Remove Geo predicates in the data after combining to Geometry.
+
+### 13) Query Rewrite enabled
 ```
 --rewrite, -r
 ```
 
 Enable query rewrite extension of GeoSPARQL standard to simplify queries, which relies upon the 'hasDefaultGeometry' property. The 'default_geometry' may be useful for adding the 'hasDefaultGeometry' to a dataset. Default: true
 
-### 12) Indexing enabled
+### 14) Indexing enabled
 ```
 --index, -x
 ```
@@ -177,21 +191,21 @@ Enable query rewrite extension of GeoSPARQL standard to simplify queries, which 
 Enable caching of re-usable data to improve query performance. Default: true
 See GeoSPARQL Jena project (https://github.com/galbiston/geosparql-jena) for more details.
 
-### 13) Index sizes
+### 15) Index sizes
 ```
 --index_sizes, -xs
 ```
 
 List of Index item sizes: [Geometry Literal, Geometry Transform, Query Rewrite]. Unlimited: -1, Off: 0 Unlimited: -1, Off: 0, Default: -1,-1,-1
 
-### 14) Index expiries
+### 16) Index expiries
 ```
 --index_expiry, -xe
 ```
 
 List of Index item expiry in milliseconds: [Geometry Literal, Geometry Transform, Query Rewrite]. Off: 0, Minimum: 1001, Default: 5000,5000,5000
 
-### 15) Properties File
+### 17) Properties File
 Supply the above parameters as a file:
 ```console
 $ java Main @/tmp/parameters

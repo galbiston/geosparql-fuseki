@@ -59,7 +59,7 @@ public class DatasetOperations {
         //Convert Geo predicates to Geometry Literals.
         if (argsConfig.isConvertGeoPredicates()) //Apply validation of Geometry Literal.
         {
-            GeoSPARQLOperations.convertGeoPredicates(dataset);
+            GeoSPARQLOperations.convertGeoPredicates(dataset, argsConfig.isRemoveGeoPredicates());
         }
 
         //Apply hasDefaultGeometry relations to single Feature hasGeometry Geometry.
@@ -89,7 +89,8 @@ public class DatasetOperations {
             spatialIndexFile = null;
         }
 
-        GeoSPARQLConfig.setupSpatialIndex(dataset, spatialIndexFile);
+        String srsURI = GeoSPARQLOperations.findModeSRS(dataset);
+        GeoSPARQLConfig.setupSpatialIndex(dataset, srsURI, spatialIndexFile);
 
         return dataset;
     }

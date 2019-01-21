@@ -71,27 +71,31 @@ public class ArgsConfig {
     private boolean validateGeometryLiteral = false;
 
     //11) Convert Geo predicates in the data to Geometry with WKT WGS84 Point GeometryLiteral.
-    @Parameter(names = {"--convert_geo", "-c"}, description = "Convert Geo predicates in the data to Geometry with WKT WGS84 Point Geometry Literal.", arity = 1, order = 9)
+    @Parameter(names = {"--convert_geo", "-c"}, description = "Convert Geo predicates in the data to Geometry with WKT WGS84 Point Geometry Literal.", arity = 1, order = 10)
     private boolean convertGeoPredicates = false;
 
-    //12) Query Rewrite enabled
-    @Parameter(names = {"--rewrite", "-r"}, description = "Enable query rewrite.", arity = 1, order = 11)
+    //12) Remove Geo predicates in the data after combining to Geometry.
+    @Parameter(names = {"--remove_geo", "-rg"}, description = "Remove Geo predicates in the data after converting to Geometry with WKT WGS84 Point Geometry Literal.", arity = 1, order = 10)
+    private boolean removeGeoPredicates = false;
+
+    //13) Query Rewrite enabled
+    @Parameter(names = {"--rewrite", "-r"}, description = "Enable query rewrite.", arity = 1, order = 12)
     private boolean queryRewrite = true;
 
-    //13) Indexing enabled
-    @Parameter(names = {"--index", "-x"}, description = "Indexing enabled.", arity = 1, order = 12)
+    //14) Indexing enabled
+    @Parameter(names = {"--index", "-x"}, description = "Indexing enabled.", arity = 1, order = 13)
     private boolean indexEnabled = true;
 
-    //14) Index sizes
-    @Parameter(names = {"--index_sizes", "-xs"}, description = "List of Index item sizes: [Geometry Literal, Geometry Transform, Query Rewrite]. Unlimited: -1, Off: 0", listConverter = IntegerListConverter.class, order = 13)
+    //15) Index sizes
+    @Parameter(names = {"--index_sizes", "-xs"}, description = "List of Index item sizes: [Geometry Literal, Geometry Transform, Query Rewrite]. Unlimited: -1, Off: 0", listConverter = IntegerListConverter.class, order = 14)
     private List<Integer> indexSizes = Arrays.asList(-1, -1, -1);
 
-    //15) Index sizes
-    @Parameter(names = {"--index_expiry", "-xe"}, description = "List of Index item expiry in milliseconds: [Geometry Literal, Geometry Transform, Query Rewrite]. Off: 0, Minimum: 1001", listConverter = LongListConverter.class, order = 14)
+    //16) Index expiry
+    @Parameter(names = {"--index_expiry", "-xe"}, description = "List of Index item expiry in milliseconds: [Geometry Literal, Geometry Transform, Query Rewrite]. Off: 0, Minimum: 1001", listConverter = LongListConverter.class, order = 15)
     private List<Long> indexExpiries = Arrays.asList(5000l, 5000l, 5000l);
 
-    //16) Help
-    @Parameter(names = {"--help", "-h"}, description = "Application help. @path/to/file can be used to submit parameters in a file.", help = true, order = 15)
+    //17) Help
+    @Parameter(names = {"--help", "-h"}, description = "Application help. @path/to/file can be used to submit parameters in a file.", help = true, order = 16)
     private boolean help = false;
 
     public int getPort() {
@@ -170,17 +174,21 @@ public class ArgsConfig {
         return convertGeoPredicates;
     }
 
+    public boolean isRemoveGeoPredicates() {
+        return removeGeoPredicates;
+    }
+
     public boolean isHelp() {
         return help;
     }
 
     public String getSummary() {
-        return "port=" + port + ", datsetName=" + datsetName + ", loopbackOnly=" + loopbackOnly + ", updateAllowed=" + updateAllowed + ", tdbFile=" + tdbFile + ", fileGraphFormats=" + fileGraphFormats + ", fileGraphDelimiters=" + fileGraphDelimiters + ", inference=" + inference + ", applyDefaultGeometry=" + applyDefaultGeometry + ", validateGeometryLiteral=" + validateGeometryLiteral + ", convertGeoPredicates=" + convertGeoPredicates + ", queryRewrite=" + queryRewrite + ", indexEnabled=" + indexEnabled + ", indexSizes=" + indexSizes + ", indexExpiries=" + indexExpiries + ", help=" + help;
+        return "port=" + port + ", datsetName=" + datsetName + ", loopbackOnly=" + loopbackOnly + ", updateAllowed=" + updateAllowed + ", tdbFile=" + tdbFile + ", fileGraphFormats=" + fileGraphFormats + ", fileGraphDelimiters=" + fileGraphDelimiters + ", inference=" + inference + ", applyDefaultGeometry=" + applyDefaultGeometry + ", validateGeometryLiteral=" + validateGeometryLiteral + ", convertGeoPredicates=" + convertGeoPredicates + ", removeGeoPredicates=" + removeGeoPredicates + ", queryRewrite=" + queryRewrite + ", indexEnabled=" + indexEnabled + ", indexSizes=" + indexSizes + ", indexExpiries=" + indexExpiries + ", help=" + help;
     }
 
     @Override
     public String toString() {
-        return "ArgsConfig{" + "port=" + port + ", datsetName=" + datsetName + ", loopbackOnly=" + loopbackOnly + ", updateAllowed=" + updateAllowed + ", tdbFile=" + tdbFile + ", fileGraphFormats=" + fileGraphFormats + ", fileGraphDelimiters=" + fileGraphDelimiters + ", inference=" + inference + ", applyDefaultGeometry=" + applyDefaultGeometry + ", validateGeometryLiteral=" + validateGeometryLiteral + ", convertGeoPredicates=" + convertGeoPredicates + ", queryRewrite=" + queryRewrite + ", indexEnabled=" + indexEnabled + ", indexSizes=" + indexSizes + ", indexExpiries=" + indexExpiries + ", help=" + help + '}';
+        return "ArgsConfig{" + "port=" + port + ", datsetName=" + datsetName + ", loopbackOnly=" + loopbackOnly + ", updateAllowed=" + updateAllowed + ", tdbFile=" + tdbFile + ", fileGraphFormats=" + fileGraphFormats + ", fileGraphDelimiters=" + fileGraphDelimiters + ", inference=" + inference + ", applyDefaultGeometry=" + applyDefaultGeometry + ", validateGeometryLiteral=" + validateGeometryLiteral + ", convertGeoPredicates=" + convertGeoPredicates + ", removeGeoPredicates=" + removeGeoPredicates + ", queryRewrite=" + queryRewrite + ", indexEnabled=" + indexEnabled + ", indexSizes=" + indexSizes + ", indexExpiries=" + indexExpiries + ", help=" + help + '}';
     }
 
 }
