@@ -82,16 +82,15 @@ public class DatasetOperations {
         }
 
         //Setup Spatial Extension
-        if (argsConfig.isSpatialExtensionEnabled()) {
-            File spatialIndexFile;
-            if (argsConfig.isTDBFileSetup()) {
-                spatialIndexFile = new File(argsConfig.getTdbFile(), "spatial.index");
-            } else {
-                spatialIndexFile = null;
-            }
-
-            GeoSPARQLConfig.setupSpatial(dataset, spatialIndexFile);
+        File spatialIndexFile;
+        if (argsConfig.isTDBFileSetup()) {
+            spatialIndexFile = new File(argsConfig.getTdbFile(), "spatial.index");
+        } else {
+            spatialIndexFile = null;
         }
+
+        GeoSPARQLConfig.setupSpatialIndex(dataset, spatialIndexFile);
+
         return dataset;
     }
 
