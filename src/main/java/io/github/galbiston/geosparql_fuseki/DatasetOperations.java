@@ -89,8 +89,7 @@ public class DatasetOperations {
             spatialIndexFile = null;
         }
 
-        String srsURI = GeoSPARQLOperations.findModeSRS(dataset);
-        GeoSPARQLConfig.setupSpatialIndex(dataset, srsURI, spatialIndexFile);
+        GeoSPARQLConfig.setupSpatialIndex(dataset, spatialIndexFile);
 
         return dataset;
     }
