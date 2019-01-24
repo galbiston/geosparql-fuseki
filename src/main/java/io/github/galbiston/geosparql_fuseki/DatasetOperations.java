@@ -22,6 +22,7 @@ import io.github.galbiston.geosparql_fuseki.cli.FileGraphDelimiter;
 import io.github.galbiston.geosparql_fuseki.cli.FileGraphFormat;
 import io.github.galbiston.geosparql_jena.configuration.GeoSPARQLConfig;
 import io.github.galbiston.geosparql_jena.configuration.GeoSPARQLOperations;
+import io.github.galbiston.geosparql_jena.implementation.data_conversion.ConvertData;
 import io.github.galbiston.rdf_tables.cli.DelimiterValidator;
 import io.github.galbiston.rdf_tables.file.FileReader;
 import java.io.File;
@@ -59,7 +60,7 @@ public class DatasetOperations {
         //Convert Geo predicates to Geometry Literals.
         if (argsConfig.isConvertGeoPredicates()) //Apply validation of Geometry Literal.
         {
-            GeoSPARQLOperations.convertGeoPredicates(dataset, argsConfig.isRemoveGeoPredicates());
+            ConvertData.convertGeoPredicates(dataset, argsConfig.isRemoveGeoPredicates());
         }
 
         //Apply hasDefaultGeometry relations to single Feature hasGeometry Geometry.
