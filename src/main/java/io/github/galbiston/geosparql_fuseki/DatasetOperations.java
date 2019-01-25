@@ -23,7 +23,11 @@ import io.github.galbiston.geosparql_fuseki.cli.FileGraphFormat;
 import io.github.galbiston.geosparql_jena.configuration.GeoSPARQLConfig;
 import io.github.galbiston.geosparql_jena.configuration.GeoSPARQLOperations;
 import io.github.galbiston.geosparql_jena.implementation.data_conversion.ConvertData;
+import io.github.galbiston.geosparql_jena.implementation.datatype.GMLDatatype;
+import io.github.galbiston.geosparql_jena.implementation.datatype.GeometryDatatype;
+import io.github.galbiston.geosparql_jena.implementation.datatype.WKTDatatype;
 import io.github.galbiston.rdf_tables.cli.DelimiterValidator;
+import io.github.galbiston.rdf_tables.datatypes.DatatypeController;
 import io.github.galbiston.rdf_tables.file.FileReader;
 import java.io.File;
 import java.lang.invoke.MethodHandles;
@@ -48,8 +52,11 @@ public class DatasetOperations {
     private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
     public static Dataset setup(ArgsConfig argsConfig) {
-        //Report the summary of the ArgsConfig
+        //Report the summary of the ArgsConfig.
         LOGGER.info("Command Line Configuration: {}", argsConfig.getSummary());
+
+        //Register GeometryLiteral datatypes for CSV conversion.
+        registerDatatypes();
 
         //Load from TDB folder or use in-memory dataset.
         Dataset dataset = prepareDataset(argsConfig);
@@ -108,6 +115,12 @@ public class DatasetOperations {
         }
 
         return dataset;
+    }
+
+    public static final void registerDatatypes() {
+        DatatypeController.addPrefixDatatype("wkt", WKTDatatype.INSTANCE);
+        DatatypeController.addPrefixDatatype("gml", GMLDatatype.INSTANCE);
+        GeometryDatatype.registerDatatypes();
     }
 
     public static void loadData(ArgsConfig argsConfig, Dataset dataset) {
