@@ -28,13 +28,8 @@ dependencies {
     implementation "org.slf4j:slf4j-api:$slf4jVersion"
     //implementation "org.slf4j:jcl-over-slf4j:$slf4jVersion"
 
-    ext.jenaVersion = "3.9.0"
-    //implementation "org.apache.jena:apache-jena-libs:$jenaVersion"
-    //Issue resolving apache-jena-libs in Maven projects. Use individual modules as provide jars.
-    implementation "org.apache.jena:jena-core:$jenaVersion"
+    ext.jenaVersion = "3.10.0"
     implementation "org.apache.jena:jena-arq:$jenaVersion"
-    implementation "org.apache.jena:jena-iri:$jenaVersion"
-    implementation "org.apache.jena:jena-tdb:$jenaVersion"
     implementation (group: 'org.apache.jena', name: 'jena-fuseki-main', version: jenaVersion){
         exclude group: "org.apache.jena", module: "apache-jena-libs"
         exclude group: "org.slf4j", module: "slf4j-log4j12"
