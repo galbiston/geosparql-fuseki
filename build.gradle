@@ -59,14 +59,14 @@ dependencies {
     //JAXB-API Resolves issue relating to JDK11 and Apache Jena dependency.
     ext.jaxbapiVersion = "2.3.1"
     implementation "javax.xml.bind:jaxb-api:$jaxbapiVersion"
-    
+
     //RDF Tables
     ext.rdfTablesVersion = "1.0.4"
     implementation "io.github.galbiston:rdf-tables:$rdfTablesVersion"
 }
 
 group = 'io.github.galbiston'
-version = '1.0.4'
+version = '1.0.5'
 
 task sourcesJar(type: Jar) {
     from sourceSets.main.allJava
