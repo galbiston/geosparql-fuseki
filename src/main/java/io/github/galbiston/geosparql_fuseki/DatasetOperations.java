@@ -50,6 +50,8 @@ public class DatasetOperations {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
+    private static final String SPATIAL_INDEX_FILE = "spatial.index";
+
     public static Dataset setup(ArgsConfig argsConfig) {
         //Report the summary of the ArgsConfig.
         LOGGER.info("Command Line Configuration: {}", argsConfig.getSummary());
@@ -91,9 +93,9 @@ public class DatasetOperations {
         //Setup Spatial Extension
         File spatialIndexFile;
         if (argsConfig.isTDBFileSetup()) {
-            spatialIndexFile = new File(argsConfig.getTdbFile(), "spatial.index");
+            spatialIndexFile = new File(argsConfig.getTdbFile(), SPATIAL_INDEX_FILE);
         } else {
-            spatialIndexFile = null;
+            spatialIndexFile = new File(SPATIAL_INDEX_FILE);
         }
 
         GeoSPARQLConfig.setupSpatialIndex(dataset, spatialIndexFile);
