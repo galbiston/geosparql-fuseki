@@ -36,7 +36,7 @@ public class MainTest {
 
     @BeforeClass
     public static void setUpClass() {
-        String[] args = {"-rf", "geosparql_test.rdf&xml"};
+        String[] args = {"-rf", "geosparql_test.rdf&xml", "-i", "true"};
 
         ArgsConfig argsConfig = new ArgsConfig();
         JCommander.newBuilder()
@@ -102,7 +102,6 @@ public class MainTest {
         expResult.add(ResourceFactory.createResource("http://example.org/Geometry#PointA"));
         expResult.add(ResourceFactory.createResource("http://example.org/Geometry#PolygonH"));
         expResult.add(ResourceFactory.createResource("http://example.org/Geometry#PolygonK"));
-
 
         //System.out.println("Exp: " + expResult);
         //System.out.println("Res: " + result);
