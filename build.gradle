@@ -48,7 +48,7 @@ dependencies {
     implementation "org.apache.commons:commons-collections4:$commonsCollectionsVersion"
 
     //GeoSPARQL Extension
-    ext.geosparqlVersion = "1.0.4"
+    ext.geosparqlVersion = "1.0.5"
     implementation "io.github.galbiston:geosparql-jena:$geosparqlVersion"
 
     //Apache SIS EPSG database - allows full range of EPSG codes but download and licensing implications.
