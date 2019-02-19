@@ -10,6 +10,10 @@ A subset of the EPSG spatial/coordinate reference systems are included by defaul
 The full EPSG dataset is not distributed due to the the EPSG terms of use being incompatible with the Apache Licence.
 Several options are available to include the EPSG dataset by setting the `SIS_DATA` environment variable (http://sis.apache.org/epsg.html).
 
+It is expected that at least one Geometry Literal or Geo Predicate is present in a dataset.
+A spatial index is created and new data cannot be added to the index once built.
+The spatial index can optionally be stored for future usage and needs to removed from a TDB folder if the index is to rebuilt.
+
 ## Getting Started
 
 GeoSPARQL Fuskei can be accessed as an embedded server using Maven etc. from Maven Central or run from the command line.
@@ -30,6 +34,8 @@ Run from the command line (see `releases` tab) and send queries over HTTP:
 
 * Load RDF file (TTL format) into memory, apply GeoSPARQL schema with RDFS inferencing and run server: `.\geosparql-fuseki.bat -rf "test.rdf" -i true`
 
+* Load RDF file into memory, write spatial index to file and run server: `.\geosparql-fuseki.bat -rf "test.rdf" -si "spatial.index"`
+
 * Load RDF file into persistent TDB and run server: `.\geosparql-fuseki.bat -rf "test.rdf>xml" -t ".\TestTDB"`
 
 * Load from persistent TDB and run server: `.\geosparql-fuseki.bat -t ".\TestTDB"`
@@ -41,7 +47,7 @@ __N.B.__ Windows Powershell will strip double quotations from arguments and so t
 ### Embedded Server
 Run within a Java application to provide GeoSPARQL support over HTTP to other applications:
 
- `GeosparqlServer server = new GeosparqlServer(portNumber, datasetName, isLoopbackOnly, dataset, isUpdate);`
+`GeosparqlServer server = new GeosparqlServer(portNumber, datasetName, isLoopbackOnly, dataset, isUpdate);`
 
 See GeoSPARQL Jena project (https://github.com/galbiston/geosparql-jena) for direct querying within a Java application without using HTTP.
 
@@ -209,7 +215,14 @@ List of Index item sizes: [Geometry Literal, Geometry Transform, Query Rewrite].
 
 List of Index item expiry in milliseconds: [Geometry Literal, Geometry Transform, Query Rewrite]. Off: 0, Minimum: 1001, Default: 5000,5000,5000
 
-### 17) Properties File
+### 17) Spatial Index file
+```
+--spatial_index, -si
+```
+
+File to load or store the spatial index. Default to "spatial.index" in TDB folder if using TDB and not set. Otherwise spatial index is not stored.
+
+### 18) Properties File
 Supply the above parameters as a file:
 ```console
 $ java Main @/tmp/parameters
