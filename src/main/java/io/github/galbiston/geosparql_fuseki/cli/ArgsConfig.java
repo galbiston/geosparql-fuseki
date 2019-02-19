@@ -51,7 +51,7 @@ public class ArgsConfig {
     private File tdbFile = null;
 
     //6) Load RDF file into dataset
-    @Parameter(names = {"--rdf_file", "-rf"}, description = "Comma separated list of [RDF file path#graph name|RDF format] to load into dataset. Graph name is optional and will use default graph. RDF format is optional (default: ttl) or select from one of the following: json-ld, json-rdf, nt, nq, thrift, trig, trix, ttl, ttl-pretty, xml, xml-plain, xml-pretty.", validateWith = RDFFileParameter.class, listConverter = RDFFileParameter.class, order = 5)
+    @Parameter(names = {"--rdf_file", "-rf"}, description = "Comma separated list of [RDF file path#graph name>RDF format] to load into dataset. Graph name is optional and will use default graph. RDF format is optional (default: ttl) or select from one of the following: json-ld, json-rdf, nt, nq, thrift, trig, trix, ttl, ttl-pretty, xml, xml-plain, xml-pretty.", validateWith = RDFFileParameter.class, listConverter = RDFFileParameter.class, order = 5)
     private List<FileGraphFormat> fileGraphFormats = new ArrayList<>();
 
     //7) Load tabular file into dataset

@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package io.github.galbiston.geosparql_fuseki.cli;
 
 import com.beust.jcommander.IParameterValidator;
@@ -22,7 +21,7 @@ import org.apache.jena.riot.RDFFormat;
 public class RDFFileParameter implements IStringConverter<List<FileGraphFormat>>, IParameterValidator {
 
     private static final FormatParameter FORMAT_PARAMETER = new FormatParameter();
-    private static final String FORMAT_SEP = "&";
+    private static final String FORMAT_SEP = ">";
     private static final String NAME_SEP = "#";
 
     @Override

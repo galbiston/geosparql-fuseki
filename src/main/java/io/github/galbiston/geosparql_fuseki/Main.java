@@ -21,6 +21,7 @@ import com.beust.jcommander.JCommander;
 import io.github.galbiston.geosparql_fuseki.cli.ArgsConfig;
 import io.github.galbiston.geosparql_jena.configuration.ModeSrsException;
 import java.lang.invoke.MethodHandles;
+import java.util.Arrays;
 import org.apache.jena.query.Dataset;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -33,6 +34,8 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+
+        LOGGER.info("Arguments Received: {}", Arrays.asList(args));
 
         ArgsConfig argsConfig = new ArgsConfig();
 

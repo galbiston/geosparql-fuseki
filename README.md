@@ -26,13 +26,17 @@ SPARQL queries directly on Jena Datasets and Models can be done using the GeoSPA
 ### Command Line
 Run from the command line (see `releases` tab) and send queries over HTTP:
 
-* Load file into memory and run server: `.\geosparql-fuseki.bat -rf "test.rdf&xml"`
+* Load RDF file (XML format) into memory and run server: `.\geosparql-fuseki.bat -rf "test.rdf>xml"`
 
-* Load file into persistent TDB and run server: `.\geosparql-fuseki.bat -rf "test.rdf&xml" -t ".\TestTDB"`
+* Load RDF file (TTL format) into memory, apply GeoSPARQL schema with RDFS inferencing and run server: `.\geosparql-fuseki.bat -rf "test.rdf" -i true`
+
+* Load RDF file into persistent TDB and run server: `.\geosparql-fuseki.bat -rf "test.rdf>xml" -t ".\TestTDB"`
 
 * Load from persistent TDB and run server: `.\geosparql-fuseki.bat -t ".\TestTDB"`
 
 * Load from persistent TDB, change port and run server: `.\geosparql-fuseki.bat -t ".\TestTDB" -p 3030`
+
+__N.B.__ Windows Powershell will strip double quotations from arguments and so triple quotation pairs may be required.
 
 ### Embedded Server
 Run within a Java application to provide GeoSPARQL support over HTTP to other applications:
