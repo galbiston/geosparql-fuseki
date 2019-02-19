@@ -58,8 +58,7 @@ public class Main {
             GeosparqlServer server = new GeosparqlServer(argsConfig.getPort(), argsConfig.getDatsetName(), argsConfig.isLoopbackOnly(), dataset, argsConfig.isUpdateAllowed());
             server.start();
         } catch (ModeSrsException ex) {
-            LOGGER.error("{}: {}", ex.getMessage(), argsConfig.getDatsetName());
-            LOGGER.info("Server Exiting");
+            LOGGER.error("GeoSPARQL Server:  Exiting - {}: {}", ex.getMessage(), argsConfig.getDatsetName());
         }
 
     }
