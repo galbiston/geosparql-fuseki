@@ -50,11 +50,11 @@ public class DatasetOperations {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
-    private static final String SPATIAL_INDEX_FILE = "spatial.index";
+    public static final String SPATIAL_INDEX_FILE = "spatial.index";
 
     public static Dataset setup(ArgsConfig argsConfig) {
         //Report the summary of the ArgsConfig.
-        LOGGER.info("Command Line Configuration: {}", argsConfig.getSummary());
+        LOGGER.info("Server Configuration: {}", argsConfig.getSummary());
 
         //Register GeometryLiteral datatypes for CSV conversion.
         registerDatatypes();
@@ -91,14 +91,15 @@ public class DatasetOperations {
         }
 
         //Setup Spatial Extension
-        File spatialIndexFile;
-        if (argsConfig.isTDBFileSetup()) {
-            spatialIndexFile = new File(argsConfig.getTdbFile(), SPATIAL_INDEX_FILE);
+        if (argsConfig.getSpatialIndexFile() != null) {
+            File spatialIndexFile = argsConfig.getSpatialIndexFile();
+            GeoSPARQLConfig.setupSpatialIndex(dataset, spatialIndexFile);
+        } else if (argsConfig.isTDBFileSetup()) {
+            File spatialIndexFile = new File(argsConfig.getTdbFile(), SPATIAL_INDEX_FILE);
+            GeoSPARQLConfig.setupSpatialIndex(dataset, spatialIndexFile);
         } else {
-            spatialIndexFile = new File(SPATIAL_INDEX_FILE);
+            GeoSPARQLConfig.setupSpatialIndex(dataset);
         }
-
-        GeoSPARQLConfig.setupSpatialIndex(dataset, spatialIndexFile);
 
         return dataset;
     }
