@@ -19,9 +19,15 @@ package io.github.galbiston.geosparql_fuseki;
 
 import com.beust.jcommander.JCommander;
 import io.github.galbiston.geosparql_fuseki.cli.ArgsConfig;
+import io.github.galbiston.geosparql_jena.configuration.ModeSrsException;
+import java.lang.invoke.MethodHandles;
 import org.apache.jena.query.Dataset;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class Main {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
     /**
      * @param args the command line arguments
@@ -42,11 +48,17 @@ public class Main {
         }
 
         //Setup dataset
-        Dataset dataset = DatasetOperations.setup(argsConfig);
+        try {
+            Dataset dataset = DatasetOperations.setup(argsConfig);
 
-        //Configure server
-        GeosparqlServer server = new GeosparqlServer(argsConfig.getPort(), argsConfig.getDatsetName(), argsConfig.isLoopbackOnly(), dataset, argsConfig.isUpdateAllowed());
-        server.start();
+            //Configure server
+            GeosparqlServer server = new GeosparqlServer(argsConfig.getPort(), argsConfig.getDatsetName(), argsConfig.isLoopbackOnly(), dataset, argsConfig.isUpdateAllowed());
+            server.start();
+        } catch (ModeSrsException ex) {
+            LOGGER.error("{}: {}", ex.getMessage(), argsConfig.getDatsetName());
+            LOGGER.info("Server Exiting");
+        }
+
     }
 
 }
