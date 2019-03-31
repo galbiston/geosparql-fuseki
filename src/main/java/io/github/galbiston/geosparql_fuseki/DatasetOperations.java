@@ -161,7 +161,7 @@ public class DatasetOperations {
                     LOGGER.info("Reading RDF - Completed - File: {}, Graph Name: {}, RDF Format: {}", rdfFile, graphName, rdfFormat);
                 }
             } catch (Exception ex) {
-                LOGGER.error("Write Error: {}", ex.getMessage());
+                LOGGER.error("Read Error: {}", ex.getMessage());
                 dataset.abort();
             } finally {
                 dataset.end();
@@ -201,7 +201,7 @@ public class DatasetOperations {
                     LOGGER.info("Reading Tabular - Completed - File: {}, Graph: {},  Delimiter: {}", tabFile, graphName, delimiter);
                 }
             } catch (Exception ex) {
-                LOGGER.error("Write Error: {}", ex.getMessage());
+                LOGGER.error("Read Error: {}", ex.getMessage());
             } finally {
                 dataset.end();
             }
