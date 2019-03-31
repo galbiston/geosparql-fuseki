@@ -83,7 +83,8 @@ public class GeosparqlServer extends Thread {
         Thread thread = new Thread() {
             @Override
             public void run() {
-                shutdown();
+                server.stop();
+                LOGGER.info("GeoSPARQL Server: Shutdown");
             }
         };
         Runtime.getRuntime().addShutdownHook(thread);
@@ -92,8 +93,13 @@ public class GeosparqlServer extends Thread {
 
     private void removeShutdownHook() {
         if (shutdownThread != null) {
-            Runtime.getRuntime().removeShutdownHook(shutdownThread);
-            shutdownThread = null;
+            try {
+                Runtime.getRuntime().removeShutdownHook(shutdownThread);
+            } catch (IllegalStateException ex) {
+                LOGGER.info("Shutdown in progress.");
+            } finally {
+                shutdownThread = null;
+            }
         }
     }
 
