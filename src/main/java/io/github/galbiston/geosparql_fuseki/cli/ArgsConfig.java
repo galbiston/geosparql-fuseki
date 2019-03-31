@@ -192,7 +192,7 @@ public class ArgsConfig {
     }
 
     public String getSummary() {
-        return "port=" + port + ", datsetName=" + datsetName + ", loopbackOnly=" + loopbackOnly + ", updateAllowed=" + updateAllowed + ", tdbFile=" + tdbFile + ", fileGraphFormats=" + fileGraphFormats + ", fileGraphDelimiters=" + fileGraphDelimiters + ", inference=" + inference + ", applyDefaultGeometry=" + applyDefaultGeometry + ", validateGeometryLiteral=" + validateGeometryLiteral + ", convertGeoPredicates=" + convertGeoPredicates + ", removeGeoPredicates=" + removeGeoPredicates + ", queryRewrite=" + queryRewrite + ", indexEnabled=" + indexEnabled + ", indexSizes=" + indexSizes + ", indexExpiries=" + indexExpiries + ", spatialIndexFile=" + spatialIndexFile + ", help=" + help;
+        return "port=" + port + ", datsetName=" + datsetName + ", loopbackOnly=" + loopbackOnly + ", updateAllowed=" + updateAllowed + ", inference=" + inference + ", applyDefaultGeometry=" + applyDefaultGeometry + ", validateGeometryLiteral=" + validateGeometryLiteral + ", convertGeoPredicates=" + convertGeoPredicates + ", removeGeoPredicates=" + removeGeoPredicates + ", queryRewrite=" + queryRewrite + ", tdbFile=" + tdbFile + ", fileGraphFormats=" + fileGraphFormats + ", fileGraphDelimiters=" + fileGraphDelimiters + ", indexEnabled=" + indexEnabled + ", indexSizes=" + indexSizes + ", indexExpiries=" + indexExpiries + ", spatialIndexFile=" + spatialIndexFile + ", help=" + help;
     }
 
     @Override
