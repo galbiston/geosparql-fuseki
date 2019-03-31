@@ -36,7 +36,7 @@ public class MainTest {
 
     @BeforeClass
     public static void setUpClass() {
-        String[] args = {"-rf", "geosparql_test.rdf>xml", "-i", "true"};
+        String[] args = {"-rf", "geosparql_test.rdf>xml", "-i"};
 
         ArgsConfig argsConfig = new ArgsConfig();
         JCommander.newBuilder()
