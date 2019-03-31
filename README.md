@@ -15,7 +15,6 @@ A spatial index is created and new data cannot be added to the index once built.
 The spatial index can optionally be stored for future usage and needs to removed from a TDB folder if the index is to rebuilt.
 
 ## Getting Started
-
 GeoSPARQL Fuskei can be accessed as an embedded server using Maven etc. from Maven Central or run from the command line.
 SPARQL queries directly on Jena Datasets and Models can be done using the GeoSPARQL Jena project (https://github.com/galbiston/geosparql-jena).
 
@@ -28,11 +27,16 @@ SPARQL queries directly on Jena Datasets and Models can be done using the GeoSPA
 ```
 
 ### Command Line
-Run from the command line (see `releases` tab) and send queries over HTTP:
+Run from the command line (see `releases` tab) and send queries over HTTP.
+
+Get Started Example:
+`.\geosparql-fuseki.bat -rf "test.rdf>xml" -i`
+
+Examples:
 
 * Load RDF file (XML format) into memory and run server: `.\geosparql-fuseki.bat -rf "test.rdf>xml"`
 
-* Load RDF file (TTL format) into memory, apply GeoSPARQL schema with RDFS inferencing and run server: `.\geosparql-fuseki.bat -rf "test.rdf" -i true`
+* Load RDF file (TTL format: default) into memory, apply GeoSPARQL schema with RDFS inferencing and run server: `.\geosparql-fuseki.bat -rf "test.rdf" -i`
 
 * Load RDF file into memory, write spatial index to file and run server: `.\geosparql-fuseki.bat -rf "test.rdf" -si "spatial.index"`
 
@@ -41,6 +45,8 @@ Run from the command line (see `releases` tab) and send queries over HTTP:
 * Load from persistent TDB and run server: `.\geosparql-fuseki.bat -t ".\TestTDB"`
 
 * Load from persistent TDB, change port and run server: `.\geosparql-fuseki.bat -t ".\TestTDB" -p 3030`
+
+ See [rdf-tables](https://github.com/galbiston/rdf-tables) in _Output Formats/Serialisations_ for supported RDF format keywords.
 
 __N.B.__ Windows Powershell will strip double quotations from arguments and so triple quotation pairs may be required.
 

@@ -7,6 +7,7 @@ package io.github.galbiston.geosparql_fuseki;
 
 import com.beust.jcommander.JCommander;
 import io.github.galbiston.geosparql_fuseki.cli.ArgsConfig;
+import io.github.galbiston.geosparql_jena.spatial.SpatialIndexException;
 import java.util.ArrayList;
 import java.util.List;
 import org.apache.jena.query.Dataset;
@@ -35,7 +36,7 @@ public class MainTest {
     }
 
     @BeforeClass
-    public static void setUpClass() {
+    public static void setUpClass() throws DatasetException, SpatialIndexException {
         String[] args = {"-rf", "geosparql_test.rdf>xml", "-i"};
 
         ArgsConfig argsConfig = new ArgsConfig();

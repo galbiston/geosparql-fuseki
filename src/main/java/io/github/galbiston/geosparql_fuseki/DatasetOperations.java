@@ -25,6 +25,7 @@ import io.github.galbiston.geosparql_jena.configuration.GeoSPARQLOperations;
 import io.github.galbiston.geosparql_jena.implementation.datatype.GMLDatatype;
 import io.github.galbiston.geosparql_jena.implementation.datatype.GeometryDatatype;
 import io.github.galbiston.geosparql_jena.implementation.datatype.WKTDatatype;
+import io.github.galbiston.geosparql_jena.spatial.SpatialIndexException;
 import io.github.galbiston.rdf_tables.cli.DelimiterValidator;
 import io.github.galbiston.rdf_tables.datatypes.DatatypeController;
 import io.github.galbiston.rdf_tables.file.FileReader;
@@ -52,7 +53,7 @@ public class DatasetOperations {
 
     public static final String SPATIAL_INDEX_FILE = "spatial.index";
 
-    public static Dataset setup(ArgsConfig argsConfig) {
+    public static Dataset setup(ArgsConfig argsConfig) throws DatasetException, SpatialIndexException {
         //Report the summary of the ArgsConfig.
         LOGGER.info("Server Configuration: {}", argsConfig.getSummary());
 
@@ -125,7 +126,7 @@ public class DatasetOperations {
         GeometryDatatype.registerDatatypes();
     }
 
-    public static void loadData(ArgsConfig argsConfig, Dataset dataset) {
+    public static void loadData(ArgsConfig argsConfig, Dataset dataset) throws DatasetException {
 
         if (!argsConfig.getFileGraphFormats().isEmpty()) {
 
@@ -161,8 +162,8 @@ public class DatasetOperations {
                     LOGGER.info("Reading RDF - Completed - File: {}, Graph Name: {}, RDF Format: {}", rdfFile, graphName, rdfFormat);
                 }
             } catch (Exception ex) {
-                LOGGER.error("Read Error: {}", ex.getMessage());
                 dataset.abort();
+                throw new DatasetException("Read Error: " + ex.getMessage(), ex);
             } finally {
                 dataset.end();
             }
@@ -201,7 +202,7 @@ public class DatasetOperations {
                     LOGGER.info("Reading Tabular - Completed - File: {}, Graph: {},  Delimiter: {}", tabFile, graphName, delimiter);
                 }
             } catch (Exception ex) {
-                LOGGER.error("Read Error: {}", ex.getMessage());
+                throw new DatasetException("Read Error: " + ex.getMessage(), ex);
             } finally {
                 dataset.end();
             }

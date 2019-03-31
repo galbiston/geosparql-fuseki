@@ -19,7 +19,8 @@ package io.github.galbiston.geosparql_fuseki;
 
 import com.beust.jcommander.JCommander;
 import io.github.galbiston.geosparql_fuseki.cli.ArgsConfig;
-import io.github.galbiston.geosparql_jena.configuration.ModeSrsException;
+import io.github.galbiston.geosparql_jena.configuration.SrsException;
+import io.github.galbiston.geosparql_jena.spatial.SpatialIndexException;
 import java.lang.invoke.MethodHandles;
 import java.util.Arrays;
 import org.apache.jena.query.Dataset;
@@ -57,7 +58,7 @@ public class Main {
             //Configure server
             GeosparqlServer server = new GeosparqlServer(argsConfig.getPort(), argsConfig.getDatsetName(), argsConfig.isLoopbackOnly(), dataset, argsConfig.isUpdateAllowed());
             server.start();
-        } catch (ModeSrsException ex) {
+        } catch (SrsException | DatasetException | SpatialIndexException ex) {
             LOGGER.error("GeoSPARQL Server:  Exiting - {}: {}", ex.getMessage(), argsConfig.getDatsetName());
         }
 
