@@ -30,7 +30,12 @@ SPARQL queries directly on Jena Datasets and Models can be done using the GeoSPA
 Run from the command line (see `releases` tab) and send queries over HTTP.
 
 Get Started Example:
-`.\geosparql-fuseki.bat -rf "test.rdf>xml" -i`
+`.\geosparql-fuseki.bat -rf "geosparql_test.rdf>xml" -i`
+
+The example file `geosparql_test.rdf` in the GitHub repository contains several geometries in geodectic WGS84 (EPSG:4326).
+The example file `geosparql_test_27700.rdf` is identical but in the projected OSGB36 (EPSG:27770) used in the United Kingdom.
+Both will return the same results as GeoSPARQL treats all SRS as being projected.
+RDFS inferencing is applied using the GeoSPARQL schema to infer additional relationships (which aren't asserted in the example files) that are used in the spatial operations and data retrieval.
 
 Examples:
 
@@ -48,7 +53,7 @@ Examples:
 
  See [rdf-tables](https://github.com/galbiston/rdf-tables) in _Output Formats/Serialisations_ for supported RDF format keywords.
 
-__N.B.__ Windows Powershell will strip double quotations from arguments and so triple quotation pairs may be required.
+__N.B.__ Windows Powershell will strip quotation pairs from arguments and so triple quotation pairs may be required, e.g. """test.rdf>xml""". Otherwise, logging output will be sent to a file called "xml". Also, "The input line is too long" error can mean the path to the .bat exceeds the character limit and needs shortening.
 
 ### Embedded Server
 Run within a Java application to provide GeoSPARQL support over HTTP to other applications:
