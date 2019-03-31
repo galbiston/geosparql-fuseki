@@ -60,23 +60,23 @@ public class ArgsConfig {
     private List<FileGraphDelimiter> fileGraphDelimiters = new ArrayList<>();
 
     //8) GeoSPARQL RDFS inference
-    @Parameter(names = {"--inference", "-i"}, description = "Enable GeoSPARQL RDFS schema and inferencing (class and property hierarchy). Inferences will be applied to the dataset. Updates to dataset may require server restart.", arity = 1, order = 7)
+    @Parameter(names = {"--inference", "-i"}, description = "Enable GeoSPARQL RDFS schema and inferencing (class and property hierarchy). Inferences will be applied to the dataset. Updates to dataset may require server restart.", order = 7)
     private boolean inference = false;
 
     //9) Apply default geometry to single Feature-Geometry
-    @Parameter(names = {"--default_geometry", "-dg"}, description = "Apply hasDefaultGeometry to single Feature hasGeometry Geometry statements. Additional properties will be added to the dataset.", arity = 1, order = 8)
+    @Parameter(names = {"--default_geometry", "-dg"}, description = "Apply hasDefaultGeometry to single Feature hasGeometry Geometry statements. Additional properties will be added to the dataset.", order = 8)
     private boolean applyDefaultGeometry = false;
 
     //10) Validate geometry literals in the data
-    @Parameter(names = {"--validate", "-v"}, description = "Validate that the Geometry Literals in the dataset are valid.", arity = 1, order = 9)
+    @Parameter(names = {"--validate", "-v"}, description = "Validate that the Geometry Literals in the dataset are valid.", order = 9)
     private boolean validateGeometryLiteral = false;
 
     //11) Convert Geo predicates in the data to Geometry with WKT WGS84 Point GeometryLiteral.
-    @Parameter(names = {"--convert_geo", "-c"}, description = "Convert Geo predicates in the data to Geometry with WKT WGS84 Point Geometry Literal.", arity = 1, order = 10)
+    @Parameter(names = {"--convert_geo", "-c"}, description = "Convert Geo predicates in the data to Geometry with WKT WGS84 Point Geometry Literal.", order = 10)
     private boolean convertGeoPredicates = false;
 
     //12) Remove Geo predicates in the data after combining to Geometry.
-    @Parameter(names = {"--remove_geo", "-rg"}, description = "Remove Geo predicates in the data after converting to Geometry with WKT WGS84 Point Geometry Literal.", arity = 1, order = 10)
+    @Parameter(names = {"--remove_geo", "-rg"}, description = "Remove Geo predicates in the data after converting to Geometry with WKT WGS84 Point Geometry Literal.", order = 10)
     private boolean removeGeoPredicates = false;
 
     //13) Query Rewrite enabled
