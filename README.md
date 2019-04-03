@@ -104,7 +104,7 @@ implementation "org.apache.sis.non-free:sis-embedded-data:$sisVersion"
 
 ## Command Line Arguments
 
-Boolean options that have false defaults only require "--option" in release v1.0.7 or later.
+Boolean options that have false defaults only require "--option" to make true in release v1.0.7 or later.
 Release v1.0.6 and earlier use the form "--option true".
 
 ### 1) Port
