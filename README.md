@@ -22,7 +22,7 @@ SPARQL queries directly on Jena Datasets and Models can be done using the GeoSPA
 <dependency>
     <groupId>io.github.galbiston</groupId>
     <artifactId>geosparql-fuseki</artifactId>
-    <version>1.0.6</version>
+    <version>1.1.0</version>
 </dependency>
 ```
 
