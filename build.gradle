@@ -24,9 +24,8 @@ repositories {
 }
 
 dependencies {
-    ext.slf4jVersion = "1.7.25"
+    ext.slf4jVersion = "1.7.26"
     implementation "org.slf4j:slf4j-api:$slf4jVersion"
-    //implementation "org.slf4j:jcl-over-slf4j:$slf4jVersion"
 
     ext.jenaVersion = "3.10.0"
     implementation "org.apache.jena:jena-arq:$jenaVersion"
