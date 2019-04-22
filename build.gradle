@@ -26,6 +26,7 @@ repositories {
 dependencies {
     ext.slf4jVersion = "1.7.26"
     implementation "org.slf4j:slf4j-api:$slf4jVersion"
+    implementation "org.slf4j:jul-to-slf4j:$slf4jVersion"
 
     ext.jenaVersion = "3.10.0"
     implementation "org.apache.jena:jena-arq:$jenaVersion"
@@ -47,7 +48,7 @@ dependencies {
     implementation "org.apache.commons:commons-collections4:$commonsCollectionsVersion"
 
     //GeoSPARQL Extension
-    ext.geosparqlVersion = "1.1.1-SNAPSHOT"
+    ext.geosparqlVersion = "1.1.2-SNAPSHOT"
     implementation "io.github.galbiston:geosparql-jena:$geosparqlVersion"
 
     //Apache SIS EPSG database - allows full range of EPSG codes but download and licensing implications.
@@ -65,7 +66,7 @@ dependencies {
 }
 
 group = 'io.github.galbiston'
-version = '1.1.1-SNAPSHOT'
+version = '1.1.2-SNAPSHOT'
 
 task sourcesJar(type: Jar) {
     from sourceSets.main.allJava
