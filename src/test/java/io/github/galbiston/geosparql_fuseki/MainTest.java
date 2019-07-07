@@ -19,9 +19,9 @@ package io.github.galbiston.geosparql_fuseki;
 
 import com.beust.jcommander.JCommander;
 import io.github.galbiston.geosparql_fuseki.cli.ArgsConfig;
-import io.github.galbiston.geosparql_jena.spatial.SpatialIndexException;
 import java.util.ArrayList;
 import java.util.List;
+import org.apache.jena.geosparql.spatial.SpatialIndexException;
 import org.apache.jena.query.Dataset;
 import org.apache.jena.query.QueryExecution;
 import org.apache.jena.query.QueryExecutionFactory;

@@ -28,8 +28,9 @@ dependencies {
     implementation "org.slf4j:slf4j-api:$slf4jVersion"
     implementation "org.slf4j:jul-to-slf4j:$slf4jVersion"
 
-    ext.jenaVersion = "3.10.0"
+    ext.jenaVersion = "3.12.0"
     implementation "org.apache.jena:jena-arq:$jenaVersion"
+    implementation "org.apache.jena:jena-geosparql:$jenaVersion"
     implementation (group: 'org.apache.jena', name: 'jena-fuseki-main', version: jenaVersion){
         exclude group: "org.apache.jena", module: "apache-jena-libs"
         exclude group: "org.slf4j", module: "slf4j-log4j12"
@@ -46,10 +47,6 @@ dependencies {
 
     ext.commonsCollectionsVersion = "4.2"
     implementation "org.apache.commons:commons-collections4:$commonsCollectionsVersion"
-
-    //GeoSPARQL Extension
-    ext.geosparqlVersion = "1.1.2-SNAPSHOT"
-    implementation "io.github.galbiston:geosparql-jena:$geosparqlVersion"
 
     //Apache SIS EPSG database - allows full range of EPSG codes but download and licensing implications.
     //Use of EPSG data is incomptabile for bundling with Apache licence, see: http://sis.apache.org/epsg.html
