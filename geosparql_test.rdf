@@ -20,7 +20,7 @@
     <ex:hasExactGeometry>
       <sf:LineString rdf:about="http://example.org/Geometry#LineStringD">
         <geo:asWKT rdf:datatype="http://www.opengis.net/ont/geosparql#wktLiteral"
-        ><![CDATA[<http://www.opengis.net/def/crs/EPSG/0/4326> LINESTRING(49.76728142390411 -7.5566583085839065, 49.76730801860234 -7.556105478012234]]></geo:asWKT>
+        ><![CDATA[<http://www.opengis.net/def/crs/EPSG/0/4326> LINESTRING(49.76728142390411 -7.5566583085839065, 49.76730801860234 -7.556105478012234)]]></geo:asWKT>
       </sf:LineString>
     </ex:hasExactGeometry>
     <ex:name>PlaceD</ex:name>
@@ -29,7 +29,7 @@
     <ex:hasExactGeometry>
       <sf:LineString rdf:about="http://example.org/Geometry#LineStringF">
         <geo:asWKT rdf:datatype="http://www.opengis.net/ont/geosparql#wktLiteral"
-        ><![CDATA[<http://www.opengis.net/def/crs/EPSG/0/4326> LINESTRING(49.7670376803898 -7.557047265728671, 49.76706427684918 -7.556494438294543]]></geo:asWKT>
+        ><![CDATA[<http://www.opengis.net/def/crs/EPSG/0/4326> LINESTRING(49.7670376803898 -7.557047265728671, 49.76706427684918 -7.556494438294543)]]></geo:asWKT>
       </sf:LineString>
     </ex:hasExactGeometry>
     <ex:name>PlaceF</ex:name>
@@ -38,7 +38,7 @@
     <ex:hasExactGeometry>
       <sf:Point rdf:about="http://example.org/Geometry#PointB">
         <geo:asWKT rdf:datatype="http://www.opengis.net/ont/geosparql#wktLiteral"
-        ><![CDATA[<http://www.opengis.net/def/crs/EPSG/0/4326> POINT(49.767404185335266 -7.555977534411771]]></geo:asWKT>
+        ><![CDATA[<http://www.opengis.net/def/crs/EPSG/0/4326> POINT(49.767404185335266 -7.555977534411771)]]></geo:asWKT>
       </sf:Point>
     </ex:hasExactGeometry>
     <ex:name>PlaceB</ex:name>
@@ -47,7 +47,7 @@
     <ex:hasExactGeometry>
       <sf:Polygon rdf:about="http://example.org/Geometry#PolygonL">
         <geo:asWKT rdf:datatype="http://www.opengis.net/ont/geosparql#wktLiteral"
-        ><![CDATA[<http://www.opengis.net/def/crs/EPSG/0/4326> POLYGON((49.76717219220662 -7.555186601165656, 49.767261710796475 -7.555196863847232, 49.76727168149855 -7.55498955204825, 49.7671821628773 -7.5549792897448285, 49.76717219220662 -7.555186601165656]]></geo:asWKT>
+        ><![CDATA[<http://www.opengis.net/def/crs/EPSG/0/4326> POLYGON((49.76717219220662 -7.555186601165656, 49.767261710796475 -7.555196863847232, 49.76727168149855 -7.55498955204825, 49.7671821628773 -7.5549792897448285, 49.76717219220662 -7.555186601165656))]]></geo:asWKT>
       </sf:Polygon>
     </ex:hasExactGeometry>
     <ex:name>PlaceL</ex:name>
@@ -56,7 +56,7 @@
     <ex:hasExactGeometry>
       <sf:Polygon rdf:about="http://example.org/Geometry#PolygonH">
         <geo:asWKT rdf:datatype="http://www.opengis.net/ont/geosparql#wktLiteral"
-        ><![CDATA[<http://www.opengis.net/def/crs/EPSG/0/4326> POLYGON((49.76718525647279 -7.55678625046624, 49.767453811502655 -7.556817047516802, 49.76749370380116 -7.555987798634042, 49.767225148394544 -7.555957006121356, 49.76718525647279 -7.55678625046624]]></geo:asWKT>
+        ><![CDATA[<http://www.opengis.net/def/crs/EPSG/0/4326> POLYGON((49.76718525647279 -7.55678625046624, 49.767453811502655 -7.556817047516802, 49.76749370380116 -7.555987798634042, 49.767225148394544 -7.555957006121356, 49.76718525647279 -7.55678625046624))]]></geo:asWKT>
       </sf:Polygon>
     </ex:hasExactGeometry>
     <ex:name>PlaceH</ex:name>
@@ -65,7 +65,7 @@
     <ex:hasExactGeometry>
       <sf:Polygon rdf:about="http://example.org/Geometry#PolygonJ">
         <geo:asWKT rdf:datatype="http://www.opengis.net/ont/geosparql#wktLiteral"
-        ><![CDATA[<http://www.opengis.net/def/crs/EPSG/0/4326> POLYGON((49.76703459069299 -7.555240310831772, 49.767303146435616 -7.555271099177621, 49.767343027582484 -7.5544418506860715, 49.76707447146322 -7.554411066878108, 49.76703459069299 -7.555240310831772]]></geo:asWKT>
+        ><![CDATA[<http://www.opengis.net/def/crs/EPSG/0/4326> POLYGON((49.76703459069299 -7.555240310831772, 49.767303146435616 -7.555271099177621, 49.767343027582484 -7.5544418506860715, 49.76707447146322 -7.554411066878108, 49.76703459069299 -7.555240310831772))]]></geo:asWKT>
       </sf:Polygon>
     </ex:hasExactGeometry>
     <ex:name>PlaceJ</ex:name>
@@ -83,7 +83,7 @@
     <ex:hasExactGeometry>
       <sf:Point rdf:about="http://example.org/Geometry#PointC2">
         <geo:asWKT rdf:datatype="http://www.opengis.net/ont/geosparql#wktLiteral"
-        ><![CDATA[<http://www.opengis.net/def/crs/EPSG/0/4326> POINT(49.76700621977145 -7.556765719356096]]></geo:asWKT>
+        ><![CDATA[<http://www.opengis.net/def/crs/EPSG/0/4326> POINT(49.76700621977145 -7.556765719356096)]]></geo:asWKT>
       </sf:Point>
     </ex:hasExactGeometry>
     <ex:name>PlaceC2</ex:name>
@@ -92,7 +92,7 @@
     <ex:hasExactGeometry>
       <sf:Point rdf:about="http://example.org/Geometry#PointC">
         <geo:asWKT rdf:datatype="http://www.opengis.net/ont/geosparql#wktLiteral"
-        ><![CDATA[<http://www.opengis.net/def/crs/EPSG/0/4326> POINT(49.76700621977145 -7.556765719356096]]></geo:asWKT>
+        ><![CDATA[<http://www.opengis.net/def/crs/EPSG/0/4326> POINT(49.76700621977145 -7.556765719356096)]]></geo:asWKT>
       </sf:Point>
     </ex:hasExactGeometry>
     <ex:name>PlaceC</ex:name>
@@ -101,7 +101,7 @@
     <ex:hasExactGeometry>
       <sf:LineString rdf:about="http://example.org/Geometry#LineStringE">
         <geo:asWKT rdf:datatype="http://www.opengis.net/ont/geosparql#wktLiteral"
-        ><![CDATA[<http://www.opengis.net/def/crs/EPSG/0/4326> LINESTRING(49.7673942128462 -7.556184846427698, 49.767440747967356 -7.55521738936449]]></geo:asWKT>
+        ><![CDATA[<http://www.opengis.net/def/crs/EPSG/0/4326> LINESTRING(49.7673942128462 -7.556184846427698, 49.767440747967356 -7.55521738936449)]]></geo:asWKT>
       </sf:LineString>
     </ex:hasExactGeometry>
     <ex:name>PlaceE</ex:name>
@@ -110,7 +110,7 @@
     <ex:hasExactGeometry>
       <sf:Point rdf:about="http://example.org/Geometry#PointA">
         <geo:asWKT rdf:datatype="http://www.opengis.net/ont/geosparql#wktLiteral"
-        ><![CDATA[<http://www.opengis.net/def/crs/EPSG/0/4326> POINT(49.76738423998772 -7.556392158328029]]></geo:asWKT>
+        ><![CDATA[<http://www.opengis.net/def/crs/EPSG/0/4326> POINT(49.76738423998772 -7.556392158328029)]]></geo:asWKT>
       </sf:Point>
     </ex:hasExactGeometry>
     <ex:name>PlaceA</ex:name>
@@ -119,7 +119,7 @@
     <ex:hasExactGeometry>
       <sf:Polygon rdf:about="http://example.org/Geometry#PolygonK">
         <geo:asWKT rdf:datatype="http://www.opengis.net/ont/geosparql#wktLiteral"
-        ><![CDATA[<http://www.opengis.net/def/crs/EPSG/0/4326> POLYGON((49.76718525647279 -7.55678625046624, 49.76725687115003 -7.556794462967842, 49.76726684470977 -7.556587151752493, 49.767195230007424 -7.556578939553413, 49.76718525647279 -7.55678625046624]]></geo:asWKT>
+        ><![CDATA[<http://www.opengis.net/def/crs/EPSG/0/4326> POLYGON((49.76718525647279 -7.55678625046624, 49.76725687115003 -7.556794462967842, 49.76726684470977 -7.556587151752493, 49.767195230007424 -7.556578939553413, 49.76718525647279 -7.55678625046624))]]></geo:asWKT>
       </sf:Polygon>
     </ex:hasExactGeometry>
     <ex:name>PlaceK</ex:name>
@@ -128,7 +128,7 @@
     <ex:hasExactGeometry>
       <sf:Point rdf:about="http://example.org/Geometry#PointM">
         <geo:asWKT rdf:datatype="http://www.opengis.net/ont/geosparql#wktLiteral"
-        ><![CDATA[<http://www.opengis.net/def/crs/EPSG/0/4326> POINT(49.76879702579324 -7.553218783718029]]></geo:asWKT>
+        ><![CDATA[<http://www.opengis.net/def/crs/EPSG/0/4326> POINT(49.76879702579324 -7.553218783718029)]]></geo:asWKT>
       </sf:Point>
     </ex:hasExactGeometry>
     <ex:name>PlaceM</ex:name>
@@ -137,7 +137,7 @@
     <ex:hasExactGeometry>
       <sf:LineString rdf:about="http://example.org/Geometry#LineStringG">
         <geo:asWKT rdf:datatype="http://www.opengis.net/ont/geosparql#wktLiteral"
-        ><![CDATA[<http://www.opengis.net/def/crs/EPSG/0/4326> LINESTRING(49.7676213331572 -7.5561414037174925, 49.76712898169763 -7.556084949320357]]></geo:asWKT>
+        ><![CDATA[<http://www.opengis.net/def/crs/EPSG/0/4326> LINESTRING(49.7676213331572 -7.5561414037174925, 49.76712898169763 -7.556084949320357)]]></geo:asWKT>
       </sf:LineString>
     </ex:hasExactGeometry>
     <ex:name>PlaceG</ex:name>
@@ -146,7 +146,7 @@
     <ex:hasExactGeometry>
       <sf:Polygon rdf:about="http://example.org/Geometry#PolygonI">
         <geo:asWKT rdf:datatype="http://www.opengis.net/ont/geosparql#wktLiteral"
-        ><![CDATA[<http://www.opengis.net/def/crs/EPSG/0/4326> POLYGON((49.76699470401132 -7.556069552936298, 49.76726325937726 -7.55610034582, 49.767303146435616 -7.555271099177621, 49.76703459069299 -7.555240310831772, 49.76699470401132 -7.556069552936298]]></geo:asWKT>
+        ><![CDATA[<http://www.opengis.net/def/crs/EPSG/0/4326> POLYGON((49.76699470401132 -7.556069552936298, 49.76726325937726 -7.55610034582, 49.767303146435616 -7.555271099177621, 49.76703459069299 -7.555240310831772, 49.76699470401132 -7.556069552936298))]]></geo:asWKT>
       </sf:Polygon>
     </ex:hasExactGeometry>
     <ex:name>PlaceI</ex:name>
