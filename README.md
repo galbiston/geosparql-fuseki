@@ -102,6 +102,24 @@ implementation "org.apache.sis.non-free:sis-embedded-data:$sisVersion"
 </dependency>
 ```
 
+## GeoSPARQL Schema and Inferencing
+
+There is an assumption that datasets apply the GeoSPARQL schema and the inferred relationships this entails.
+This is necessary generally as well as when utilising query rewrite.
+
+If not using inferencing, through choice or when updating data, then it is necessary to assert these relationships.
+Therefore, `Feature` and `Geometry` class relationships must be asserted along with their parent class `SpatialObject`.
+If using `asWKT` or `asGML` then `hasSerialization` relationship is also required.
+
+```
+    <http://example.org/Geometry#LineStringA> a geo:Geometry ;
+            a geo:SpatialObject ;
+            geo:asWKT \"LINESTRING(0 0, 10 10)\"^^<http://www.opengis.net/ont/geosparql#wktLiteral> .
+            geo:hasSerialization \"LINESTRING(0 0, 10 10)\"^^<http://www.opengis.net/ont/geosparql#wktLiteral> .
+```
+
+These relationships can be automatically inferred by using the `-i` option when the server is started.
+
 ## Command Line Arguments
 
 Boolean options that have false defaults only require "--option" to make true in release v1.0.7 or later.
@@ -133,7 +151,7 @@ The server only accepts local host loopback requests. Default: true
 --update, -u
 ```
 
-The server accepts updates to modify the dataset. Default: false
+The server accepts updates to modify the dataset. Inferencing and spatial indexing will not be applied until the server is restarted. Default: false
 
 ### 5) TDB folder
 ```
