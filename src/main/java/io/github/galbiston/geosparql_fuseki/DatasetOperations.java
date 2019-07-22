@@ -92,14 +92,18 @@ public class DatasetOperations {
         }
 
         //Setup Spatial Extension
-        if (argsConfig.getSpatialIndexFile() != null) {
-            File spatialIndexFile = argsConfig.getSpatialIndexFile();
-            GeoSPARQLConfig.setupSpatialIndex(dataset, spatialIndexFile);
-        } else if (argsConfig.isTDBFileSetup()) {
-            File spatialIndexFile = new File(argsConfig.getTdbFile(), SPATIAL_INDEX_FILE);
-            GeoSPARQLConfig.setupSpatialIndex(dataset, spatialIndexFile);
+        if (!dataset.isEmpty()) {
+            if (argsConfig.getSpatialIndexFile() != null) {
+                File spatialIndexFile = argsConfig.getSpatialIndexFile();
+                GeoSPARQLConfig.setupSpatialIndex(dataset, spatialIndexFile);
+            } else if (argsConfig.isTDBFileSetup()) {
+                File spatialIndexFile = new File(argsConfig.getTdbFile(), SPATIAL_INDEX_FILE);
+                GeoSPARQLConfig.setupSpatialIndex(dataset, spatialIndexFile);
+            } else {
+                GeoSPARQLConfig.setupSpatialIndex(dataset);
+            }
         } else {
-            GeoSPARQLConfig.setupSpatialIndex(dataset);
+            LOGGER.warn("Datset empty. Spatial Index not constructed. Server will require restarting after adding data and any updates to build Spatial Index.");
         }
 
         return dataset;
