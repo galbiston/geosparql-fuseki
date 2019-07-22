@@ -114,7 +114,7 @@ If using `asWKT` or `asGML` then `hasSerialization` relationship is also require
 ```
     <http://example.org/Geometry#LineStringA> a geo:Geometry ;
             a geo:SpatialObject ;
-            geo:asWKT \"LINESTRING(0 0, 10 10)\"^^<http://www.opengis.net/ont/geosparql#wktLiteral> .
+            geo:asWKT \"LINESTRING(0 0, 10 10)\"^^<http://www.opengis.net/ont/geosparql#wktLiteral> ;
             geo:hasSerialization \"LINESTRING(0 0, 10 10)\"^^<http://www.opengis.net/ont/geosparql#wktLiteral> .
 ```
 
