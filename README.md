@@ -1,6 +1,6 @@
 # GeoSPARQL Fuseki
 
-**This project has been incorporated as module of the Apache Jena project and is no longer maintained. Go to the Apache Jena project for the latest version and documentation, see https://jena.apache.org/documentation/geosparql/**
+**This project has been incorporated as a module of the Apache Jena project and is no longer maintained. Go to the Apache Jena project for the latest version and documentation, see https://jena.apache.org/documentation/geosparql/**
 
 This application provides a HTTP server compliant with the GeoSPARQL standard.
 It uses the embedded server Fuseki from Apache Jena and provides additional parameters for dataset loading.
